@@ -1,16 +1,16 @@
 import React, { useContext, useRef, useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import { HeaderContext } from "../Helpers/HeaderContext";
+import { Context } from "../Helpers/Context";
 import gsap from "gsap";
 
 const Header = () => {
   const navCircle = useRef();
   const navigate = useNavigate();
 
-  const lang = useContext(HeaderContext)[0];
-  const setLang = useContext(HeaderContext)[1];
-  const position = useContext(HeaderContext)[2];
-  const setPosition = useContext(HeaderContext)[3];
+  const lang = useContext(Context)[0];
+  const setLang = useContext(Context)[1];
+  const position = useContext(Context)[2];
+  const setPosition = useContext(Context)[3];
 
   useEffect(() => {
     window.localStorage.setItem("NAV_POSITION", JSON.stringify(position));

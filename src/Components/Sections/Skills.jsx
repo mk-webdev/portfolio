@@ -1,26 +1,14 @@
-import React, { useContext, useLayoutEffect } from "react";
-import { HeaderContext } from "../Helpers/HeaderContext";
-import Loader from "./Loader";
-import { useFetch } from "../Helpers/customHooks";
+import React from "react";
 import computeContentHeight from "../Helpers/computeContentHeight";
 
-const Skills = () => {
-  const lang = useContext(HeaderContext)[0];
-  const position = useContext(HeaderContext)[2];
+const Skills = ({ data }) => {
   let skills;
-
-  const { data, loading, error } = useFetch(position, lang, "posts");
-
-  if (loading) return <Loader />; //Loader ggf in useFetch auslagern
-
-  if (error) console.log(error);
 
   if (data) {
     computeContentHeight();
 
     let i = 0;
     skills = data.map((item, index) => {
-      console.log(index);
       let content;
       switch (i) {
         case 0:
@@ -61,7 +49,6 @@ const Skills = () => {
       );
     });
   }
-  console.log(data);
 
   return (
     <section className="skills flex flex-col-reverse gap-6 mt-16 md:mt-32 lg:mt-64">
