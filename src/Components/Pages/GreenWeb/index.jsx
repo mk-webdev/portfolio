@@ -19,7 +19,6 @@ const GreenWeb = () => {
   if (data) {
     pageData = useDataFilter(data, position, "page")[0];
     postsData = useDataFilter(data, position, "posts");
-    mediaData = useDataFilter(data, position, "media");
     meta = useMetaData(pageData.title, pageData.content, lang);
     particleImg = pageData.featured_media;
   }

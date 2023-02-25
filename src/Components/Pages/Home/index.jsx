@@ -3,6 +3,7 @@ import { useMetaData, useDataFilter } from "../../Helpers/customHooks";
 import Contact from "../../Sections/Contact";
 import { Context } from "../../Helpers/Context";
 import Particles from "../../Sections/Three/Particles/script";
+import MK from "../../Sections/Three/MK";
 
 const Home = () => {
   const lang = useContext(Context)[0];
@@ -38,7 +39,7 @@ const Home = () => {
         particleImg={particleImg}
         position={position}
       /> */}
-
+      <MK />
       {pageData ? <Contact pageData={pageData.custom_fields} /> : null}
     </>
   );
