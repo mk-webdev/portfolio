@@ -1,4 +1,4 @@
-import React, { useContext, useRef } from "react";
+import React, { useContext } from "react";
 import { useMetaData, useDataFilter } from "../../Helpers/customHooks";
 import Contact from "../../Sections/Contact";
 import { Context } from "../../Helpers/Context";
@@ -9,8 +9,6 @@ const Home = () => {
   const lang = useContext(Context)[0];
   const position = useContext(Context)[2];
   const data = useContext(Context)[4];
-  const renderNode = useRef();
-
   let pageData, meta, particleImg;
 
   if (data) {
@@ -18,6 +16,9 @@ const Home = () => {
     meta = useMetaData(pageData.title, pageData.content, lang);
     particleImg = pageData.featured_media;
   }
+  //TODO Rerenders bei Seitenwechsel, durch verzögertes disposal bei r3f -> kein Performanceproblem
+  //Übergangslösung: Fade-Animationen beim Header
+
   return (
     <>
       {meta ? meta : null}

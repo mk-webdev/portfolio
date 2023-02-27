@@ -16,8 +16,6 @@ import vertexShader from "../shader/vertex.glsl?raw";
 import fragmentShader from "../shader/fragment.glsl?raw";
 
 const ParticleEffect = ({ particleImg, position }) => {
-  console.log("🚀 ~ file: index.jsx:6 ~ Particles ~ particleImg:", particleImg);
-
   //TODO googlen zu CORS Fehler bei particleImg ggf. extra media fetch machen
   // let src = particleImg;
   //Übergangslösung:
@@ -158,13 +156,21 @@ const ParticleEffect = ({ particleImg, position }) => {
     );
 
     return (
-      <mesh ref={particleMesh} geometry={ibg} material={shaderMaterial}></mesh>
+      <mesh
+        dispose={null}
+        ref={particleMesh}
+        geometry={ibg}
+        material={shaderMaterial}></mesh>
     );
   };
 
   return (
-    <div className="ml-auto w-5/6 order-1 lg:order-2 lg:absolute lg:-right-[15%] lg:h-screen">
-      <Canvas camera={{ fov: 50, near: 1, far: 10000, position: [0, 0, 300] }}>
+    <div
+      id="particles"
+      className="ml-auto w-5/6 order-1 lg:order-2 lg:absolute lg:-right-[15%] lg:h-screen">
+      <Canvas
+        dispose={null}
+        camera={{ fov: 50, near: 1, far: 10000, position: [0, 0, 300] }}>
         <Particles />
       </Canvas>
     </div>

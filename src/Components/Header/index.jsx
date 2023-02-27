@@ -4,6 +4,7 @@ import { Context } from "../Helpers/Context";
 import gsap from "gsap";
 
 const Header = () => {
+  //TODO Fade InOut Animation of Content
   const navCircle = useRef();
   const navigate = useNavigate();
 
@@ -21,6 +22,14 @@ const Header = () => {
     );
     switch (positionLocalStorage) {
       case "Sustainability":
+        gsap.to("main", {
+          opacity: 1,
+          delay: 0.6,
+        });
+        gsap.to("#particles", {
+          opacity: 1,
+          delay: 0.6,
+        });
         gsap.to(navCircle.current, {
           left: "1.5%",
           transform: "none",
@@ -30,6 +39,14 @@ const Header = () => {
         });
         break;
       case "Home":
+        gsap.to("main", {
+          opacity: 1,
+          delay: 0.6,
+        });
+        gsap.to("#particles", {
+          opacity: 1,
+          delay: 0.6,
+        });
         gsap.to(navCircle.current, {
           left: "50%",
           transform: "translateX(-50%)",
@@ -39,6 +56,14 @@ const Header = () => {
         });
         break;
       case "WebDev":
+        gsap.to("main", {
+          opacity: 1,
+          delay: 0.6,
+        });
+        gsap.to("#particles", {
+          opacity: 1,
+          delay: 0.6,
+        });
         gsap.to(navCircle.current, {
           left: "66%",
           transform: "none",
@@ -63,7 +88,19 @@ const Header = () => {
               <NavLink
                 onClick={(event) => {
                   event.preventDefault();
-                  setPosition("Sustainability");
+                  gsap.to(navCircle.current, {
+                    left: "1.5%",
+                    transform: "none",
+                  }),
+                    gsap.to("#particles", {
+                      opacity: 0,
+                    }),
+                    gsap.to("main", {
+                      opacity: 0,
+                      onComplete: () => {
+                        setPosition("Sustainability");
+                      },
+                    });
                 }}
                 to="/greenweb"
                 className="first inline-block max-w-[1.5rem] overflow-hidden opacity-0">
@@ -74,7 +111,19 @@ const Header = () => {
               <NavLink
                 onClick={(event) => {
                   event.preventDefault();
-                  setPosition("Home");
+                  gsap.to(navCircle.current, {
+                    left: "50%",
+                    transform: "translateX(-50%)",
+                  }),
+                    gsap.to("#particles", {
+                      opacity: 0,
+                    }),
+                    gsap.to("main", {
+                      opacity: 0,
+                      onComplete: () => {
+                        setPosition("Home");
+                      },
+                    });
                 }}
                 to="/"
                 className="inline-block max-w-[1.5rem] overflow-hidden opacity-0">
@@ -85,7 +134,19 @@ const Header = () => {
               <NavLink
                 onClick={(event) => {
                   event.preventDefault();
-                  setPosition("WebDev");
+                  gsap.to(navCircle.current, {
+                    left: "66%",
+                    transform: "none",
+                  }),
+                    gsap.to("#particles", {
+                      opacity: 0,
+                    }),
+                    gsap.to("main", {
+                      opacity: 0,
+                      onComplete: () => {
+                        setPosition("WebDev");
+                      },
+                    });
                 }}
                 to="/webdev"
                 className="inline-block max-w-[1.5rem] overflow-hidden opacity-0">

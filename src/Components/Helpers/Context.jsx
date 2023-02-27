@@ -1,4 +1,4 @@
-import React, { createContext, useState, useEffect } from "react";
+import React, { createContext, useState, useEffect, useMemo } from "react";
 import { useLocalStorage } from "./customHooks";
 import Loader from "../Sections/Loader";
 import axios from "axios";
@@ -25,7 +25,7 @@ export const ContextProvider = ({ children }) => {
     `wp-json/unc/v2/media`,
   ];
 
-  useEffect(() => {
+  useMemo(() => {
     const source = axios.CancelToken.source();
     let responseDataArray = [];
     setLoading(true);

@@ -11,7 +11,6 @@ const GreenWeb = () => {
   const position = useContext(Context)[2];
   const data = useContext(Context)[4];
   const renderNodeCube = useRef();
-  const renderNode = useRef();
   const [index, setIndex] = useState(1);
 
   let pageData, postsData, meta, particleImg;

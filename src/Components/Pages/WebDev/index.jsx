@@ -1,4 +1,4 @@
-import React, { useContext, useRef } from "react";
+import React, { useContext } from "react";
 import Contact from "../../Sections/Contact";
 import { Context } from "../../Helpers/Context";
 import { useMetaData, useDataFilter } from "../../Helpers/customHooks";
@@ -9,7 +9,6 @@ const WebDev = () => {
   const lang = useContext(Context)[0];
   const position = useContext(Context)[2];
   const data = useContext(Context)[4];
-  const renderNode = useRef();
 
   let pageData, postsData, meta, particleImg;
 
@@ -30,6 +29,7 @@ const WebDev = () => {
             {pageData ? pageData.content : ""}
           </p>
         </article>
+
         <ParticleEffect particleImg={particleImg} position={position} />
       </section>
       <Skills data={postsData} />

@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Helmet, HelmetProvider } from "react-helmet-async";
-import axios from "axios";
 
 export const useMetaData = (title, description, lang) => {
   return (
