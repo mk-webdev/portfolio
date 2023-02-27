@@ -5,7 +5,7 @@ import { useControls } from "leva";
 import { Color, MeshBasicMaterial, Vector3 } from "three";
 
 const vec = new Vector3();
-
+//TODO Optimize Obj (Color, Thickness, Size)
 function Rig() {
   return useFrame(({ camera, mouse }) => {
     vec.set(mouse.x * 2, mouse.y * 2, camera.position.z);

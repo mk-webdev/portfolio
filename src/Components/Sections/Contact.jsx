@@ -9,9 +9,16 @@ const Contact = ({ pageData }) => {
   let textSlider;
   let contactCTAs;
 
-  // TODO SlideEffekt erst aktivieren, sobald alles geladen ist
+  //TODO TextSlider für Home speziell auslagern um folgenden Fehler zu umgehen:
+  //   Warning: React has detected a change in the order of Hooks called by Contact. This will lead to bugs and errors if not fixed. For more information, read the Rules of Hooks: https://reactjs.org/link/rules-of-hooks
 
-  // if (page === "Home" && data) {
+  //   Previous render            Next render
+  //   ------------------------------------------------------
+  // 1. useContext                 useContext
+  // 2. undefined                  useLayoutEffect
+  //   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+  // if (page === "Home" && pageData) {
   //   useLayoutEffect(() => {
   //     let snapshot = gsap.context(() => {
   //       gsap.to(".firstLine", {
@@ -30,7 +37,7 @@ const Contact = ({ pageData }) => {
   //       });
   //     });
   //     return () => snapshot.revert();
-  //   }, [data]);
+  //   }, [pageData]);
   // }
 
   if (pageData) {

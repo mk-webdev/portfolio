@@ -3,7 +3,7 @@ import Contact from "../../Sections/Contact";
 import { Context } from "../../Helpers/Context";
 import { useMetaData, useDataFilter } from "../../Helpers/customHooks";
 import Skills from "../../Sections/Skills";
-import Particles from "../../Sections/Three/Particles/script";
+import ParticleEffect from "../../Sections/Three/Particles/script";
 
 const WebDev = () => {
   const lang = useContext(Context)[0];
@@ -30,15 +30,8 @@ const WebDev = () => {
             {pageData ? pageData.content : ""}
           </p>
         </article>
-        <div
-          className="ml-auto w-5/6 order-1 lg:order-2 lg:absolute lg:-right-[15%] lg:h-screen"
-          ref={renderNode}></div>
+        <ParticleEffect particleImg={particleImg} position={position} />
       </section>
-      {/* <Particles
-        renderNode={renderNode}
-        particleImg={particleImg}
-        position={position}
-      /> */}
       <Skills data={postsData} />
       {pageData ? <Contact pageData={pageData.custom_fields} /> : null}
     </>

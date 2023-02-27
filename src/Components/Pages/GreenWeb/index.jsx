@@ -4,7 +4,7 @@ import { Context } from "../../Helpers/Context";
 import { useMetaData, useDataFilter } from "../../Helpers/customHooks";
 import Cube from "../../Sections/Three/Cube";
 import SustainabilityTopics from "../../Sections/SustainabilityTopics";
-import Particles from "../../Sections/Three/Particles/script";
+import ParticleEffect from "../../Sections/Three/Particles/script";
 
 const GreenWeb = () => {
   const lang = useContext(Context)[0];
@@ -33,9 +33,7 @@ const GreenWeb = () => {
             {pageData ? pageData.content : ""}
           </p>
         </article>
-        <div
-          className="ml-auto w-5/6 order-1 lg:order-2 lg:absolute lg:-right-[15%] lg:h-screen"
-          ref={renderNode}></div>
+        <ParticleEffect particleImg={particleImg} position={position} />
       </section>
       <section className="topics-container grid grid-cols-1 pt-10 md:grid-cols-2 md:items-center">
         <div className="cube h-screen" ref={renderNodeCube}></div>

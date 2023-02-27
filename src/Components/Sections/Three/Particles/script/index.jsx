@@ -1,223 +1,178 @@
-import React, { useLayoutEffect } from "react";
-import * as THREE from "three";
+import React, { useRef } from "react";
+import { Canvas, useFrame, useLoader } from "@react-three/fiber";
+import {
+  TextureLoader,
+  LinearFilter,
+  RGBAFormat,
+  Vector2,
+  AdditiveBlending,
+  BufferAttribute,
+  InstancedBufferGeometry,
+  InstancedBufferAttribute,
+  RawShaderMaterial,
+} from "three";
+import gsap from "gsap";
 import vertexShader from "../shader/vertex.glsl?raw";
 import fragmentShader from "../shader/fragment.glsl?raw";
-import gsap from "gsap";
 
-const Particles = ({ renderNode, particleImg, position }) => {
-  let width, height, object3D;
+const ParticleEffect = ({ particleImg, position }) => {
+  console.log("🚀 ~ file: index.jsx:6 ~ Particles ~ particleImg:", particleImg);
 
-  useLayoutEffect(() => {
-    if (renderNode) {
-      const scene = new THREE.Scene();
-      const camera = new THREE.PerspectiveCamera(
-        50,
-        renderNode.current.offsetWidth / renderNode.current.offsetHeight,
-        1,
-        10000
-      );
-      camera.position.z = 300;
+  //TODO googlen zu CORS Fehler bei particleImg ggf. extra media fetch machen
+  // let src = particleImg;
+  //Übergangslösung:
+  let src;
+  switch (position) {
+    case "Home":
+      src = "./marco.webp";
+      break;
+    case "WebDev":
+      src = "./earth.webp";
+      break;
+    case "Sustainability":
+      src = "./flower.webp";
+      break;
+  }
+  let width, height;
 
-      const renderer = new THREE.WebGLRenderer({
-        antialias: true,
-        alpha: true,
-      });
-      renderer.setSize(
-        renderNode.current.offsetWidth,
-        renderNode.current.offsetHeight
-      );
-      renderNode.current.appendChild(renderer.domElement);
+  const Particles = () => {
+    const particleMesh = useRef();
 
-      const clock = new THREE.Clock(true);
+    useFrame(({ clock }) => {
+      const delta = (clock.getDelta() + 0.01) * 2;
+      //   if (!particleMesh) return;
+      particleMesh.current.material.uniforms.uTime.value += delta;
+    });
 
-      const loader = new THREE.TextureLoader();
+    const texture = useLoader(TextureLoader, src);
+    texture.minFilter = LinearFilter;
+    texture.magFilter = LinearFilter;
+    texture.format = RGBAFormat;
 
-      //TODO googlen zu CORS Fehler bei particleImg ggf. extra media fetch machen
-      // let src = particleImg;
-      //Übergangslösung:
-      let src;
-      switch (position) {
-        case "Home":
-          src = "./marco.webp";
-          break;
-        case "WebDev":
-          src = "./earth.webp";
-          break;
-        case "Sustainability":
-          src = "./flower.webp";
-          break;
+    width = texture.image.width;
+    height = texture.image.height;
+
+    //init points
+    let numPoints = width * height;
+
+    let numVisible = numPoints;
+    let threshold = 0;
+    let originalColors;
+
+    let discard = true;
+
+    if (discard) {
+      // discard pixels darker than threshold #22
+
+      numVisible = 0;
+      threshold = 34;
+
+      const img = texture.image;
+      const canvas = document.createElement("canvas");
+      const ctx = canvas.getContext("2d");
+
+      canvas.width = width;
+      canvas.height = height;
+      ctx.scale(1, -1);
+      ctx.drawImage(img, 0, 0, width, height * -1);
+
+      const imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+      originalColors = Float32Array.from(imgData.data);
+
+      for (let i = 0; i < numPoints; i++) {
+        if (originalColors[i * 4 + 0] > threshold) numVisible++;
       }
-      console.log(position);
-      console.log(src);
-      loader.load(src, (texture) => {
-        texture.minFilter = THREE.LinearFilter;
-        texture.magFilter = THREE.LinearFilter;
-        texture.format = THREE.RGBAFormat;
-
-        width = texture.image.width;
-        height = texture.image.height;
-
-        //init points
-        let numPoints = width * height;
-
-        let numVisible = numPoints;
-        let threshold = 0;
-        let originalColors;
-
-        let discard = true;
-        if (discard) {
-          // discard pixels darker than threshold #22
-          numVisible = 0;
-          threshold = 34;
-
-          const img = texture.image;
-          const canvas = document.createElement("canvas");
-          const ctx = canvas.getContext("2d");
-
-          canvas.width = width;
-          canvas.height = height;
-          ctx.scale(1, -1);
-          ctx.drawImage(img, 0, 0, width, height * -1);
-
-          const imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-          originalColors = Float32Array.from(imgData.data);
-
-          for (let i = 0; i < numPoints; i++) {
-            if (originalColors[i * 4 + 0] > threshold) numVisible++;
-          }
-        }
-
-        const uniforms = {
-          uTime: { value: 0 },
-          uRandom: { value: 1.0 },
-          uDepth: { value: 2.0 },
-          uSize: { value: 0.0 },
-          uTextureSize: { value: new THREE.Vector2(width, height) },
-          uTexture: { value: texture },
-          uTouch: { value: null },
-        };
-        const material = new THREE.RawShaderMaterial({
-          uniforms,
-          vertexShader: vertexShader,
-          fragmentShader: fragmentShader,
-          depthTest: false,
-          transparent: true,
-          blending: THREE.AdditiveBlending,
-        });
-        const geometry = new THREE.InstancedBufferGeometry();
-        // positions
-        const positions = new THREE.BufferAttribute(new Float32Array(4 * 3), 3);
-        positions.setXYZ(0, -0.5, 0.5, 0.0);
-        positions.setXYZ(1, 0.5, 0.5, 0.0);
-        positions.setXYZ(2, -0.5, -0.5, 0.0);
-        positions.setXYZ(3, 0.5, -0.5, 0.0);
-        geometry.attributes.position = positions;
-
-        // uvs
-        const uvs = new THREE.BufferAttribute(new Float32Array(4 * 2), 2);
-        uvs.setXYZ(0, 0.0, 0.0);
-        uvs.setXYZ(1, 1.0, 0.0);
-        uvs.setXYZ(2, 0.0, 1.0);
-        uvs.setXYZ(3, 1.0, 1.0);
-        geometry.attributes.uv = uvs;
-        // index
-        geometry.setIndex(
-          new THREE.BufferAttribute(new Uint16Array([0, 2, 1, 2, 3, 1]), 1)
-        );
-
-        const indices = new Uint16Array(numVisible);
-        const offsets = new Float32Array(numVisible * 3);
-        const angles = new Float32Array(numVisible);
-
-        for (let i = 0, j = 0; i < numPoints; i++) {
-          if (discard && originalColors[i * 4 + 0] <= threshold) continue;
-
-          offsets[j * 3 + 0] = i % width;
-          offsets[j * 3 + 1] = Math.floor(i / width);
-
-          indices[j] = i;
-
-          angles[j] = Math.random() * Math.PI;
-
-          j++;
-        }
-        geometry.attributes.pindex = new THREE.InstancedBufferAttribute(
-          indices,
-          1,
-          false
-        );
-        geometry.attributes.offset = new THREE.InstancedBufferAttribute(
-          offsets,
-          3,
-          false
-        );
-        geometry.attributes.angle = new THREE.InstancedBufferAttribute(
-          angles,
-          1,
-          false
-        );
-        object3D = new THREE.Mesh(geometry, material);
-
-        //show
-        let time = 1.0;
-        gsap.fromTo(
-          object3D.material.uniforms.uSize,
-          { value: 0.5 },
-          { value: 1.5, duration: time }
-        );
-
-        gsap.to(object3D.material.uniforms.uRandom, {
-          duration: time,
-          value: 2.0,
-        });
-
-        gsap.fromTo(
-          object3D.material.uniforms.uDepth,
-          { value: 40.0 },
-          { value: 4.0, duration: time * 1.5 }
-        );
-
-        scene.add(object3D);
-        resize();
-      });
-
-      function animate() {
-        requestAnimationFrame(animate);
-
-        const delta = clock.getDelta();
-        if (!object3D) return;
-        object3D.material.uniforms.uTime.value += delta;
-
-        renderer.render(scene, camera);
-      }
-      animate();
-
-      window.addEventListener("resize", resize);
-      function resize() {
-        if (!renderer || !renderNode.current) return;
-        camera.aspect =
-          renderNode.current.offsetWidth / renderNode.current.offsetHeight;
-
-        camera.updateProjectionMatrix();
-        let fovHeight =
-          2 * Math.tan((camera.fov * Math.PI) / 180 / 2) * camera.position.z;
-
-        renderer.setSize(
-          renderNode.current.offsetWidth,
-          renderNode.current.offsetHeight
-        );
-
-        if (!object3D) return;
-        const scale = fovHeight / height;
-        object3D.scale.set(scale, scale, 1);
-      }
-
-      return () => {
-        gsap.globalTimeline.clear();
-        if (!renderNode.current) return;
-        renderNode.current.removeChild(renderer.domElement);
-      };
     }
-  }, [renderNode]);
+
+    const uniforms = {
+      uTime: { value: 0 },
+      uRandom: { value: 1.0 },
+      uDepth: { value: 2.0 },
+      uSize: { value: 0.0 },
+      uTextureSize: { value: new Vector2(width, height) },
+      uTexture: { value: texture },
+      uTouch: { value: null },
+    };
+    const shaderMaterial = new RawShaderMaterial({
+      uniforms,
+      vertexShader: vertexShader,
+      fragmentShader: fragmentShader,
+      depthTest: false,
+      transparent: true,
+      blending: AdditiveBlending,
+    });
+
+    //ggf useMemo
+    const ibg = new InstancedBufferGeometry();
+    // positions
+    const positions = new BufferAttribute(new Float32Array(4 * 3), 3);
+    positions.setXYZ(0, -0.5, 0.5, 0.0);
+    positions.setXYZ(1, 0.5, 0.5, 0.0);
+    positions.setXYZ(2, -0.5, -0.5, 0.0);
+    positions.setXYZ(3, 0.5, -0.5, 0.0);
+    ibg.attributes.position = positions;
+
+    // uvs
+    const uvs = new BufferAttribute(new Float32Array(4 * 2), 2);
+    uvs.setXYZ(0, 0.0, 0.0);
+    uvs.setXYZ(1, 1.0, 0.0);
+    uvs.setXYZ(2, 0.0, 1.0);
+    uvs.setXYZ(3, 1.0, 1.0);
+    ibg.attributes.uv = uvs;
+    // index
+    ibg.setIndex(new BufferAttribute(new Uint16Array([0, 2, 1, 2, 3, 1]), 1));
+
+    const indices = new Uint16Array(numVisible);
+    const offsets = new Float32Array(numVisible * 3);
+    const angles = new Float32Array(numVisible);
+
+    for (let i = 0, j = 0; i < numPoints; i++) {
+      if (discard && originalColors[i * 4 + 0] <= threshold) continue;
+
+      offsets[j * 3 + 0] = i % width;
+      offsets[j * 3 + 1] = Math.floor(i / width);
+
+      indices[j] = i;
+
+      angles[j] = Math.random() * Math.PI;
+
+      j++;
+    }
+    ibg.attributes.pindex = new InstancedBufferAttribute(indices, 1, false);
+    ibg.attributes.offset = new InstancedBufferAttribute(offsets, 3, false);
+    ibg.attributes.angle = new InstancedBufferAttribute(angles, 1, false);
+
+    //show
+    let time = 1.0;
+    gsap.fromTo(
+      shaderMaterial.uniforms.uSize,
+      { value: 0.5 },
+      { value: 1.5, duration: time }
+    );
+
+    gsap.to(shaderMaterial.uniforms.uRandom, {
+      duration: time,
+      value: 2.0,
+    });
+
+    gsap.fromTo(
+      shaderMaterial.uniforms.uDepth,
+      { value: 40.0 },
+      { value: 4.0, duration: time * 1.5 }
+    );
+
+    return (
+      <mesh ref={particleMesh} geometry={ibg} material={shaderMaterial}></mesh>
+    );
+  };
+
+  return (
+    <div className="ml-auto w-5/6 order-1 lg:order-2 lg:absolute lg:-right-[15%] lg:h-screen">
+      <Canvas camera={{ fov: 50, near: 1, far: 10000, position: [0, 0, 300] }}>
+        <Particles />
+      </Canvas>
+    </div>
+  );
 };
-export default Particles;
+
+export default ParticleEffect;
