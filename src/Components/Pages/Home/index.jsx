@@ -18,7 +18,6 @@ const Home = () => {
     meta = useMetaData(pageData.title, pageData.content, lang);
     particleImg = pageData.featured_media;
   }
-  //TODO Particle Efffect to R3F
   return (
     <>
       {meta ? meta : null}
@@ -29,17 +28,8 @@ const Home = () => {
             {pageData ? pageData.content : ""}
           </p>
         </article>
-        {/* <div
-          className="ml-auto w-5/6 order-1 lg:order-2 lg:absolute lg:-right-[15%] lg:h-screen"
-          ref={renderNode}></div> */}
         <ParticleEffect particleImg={particleImg} position={position} />
       </section>
-
-      {/* <Particles
-        renderNode={renderNode}
-        particleImg={particleImg}
-        position={position}
-      /> */}
       <MK />
       {pageData ? <Contact pageData={pageData.custom_fields} /> : null}
     </>

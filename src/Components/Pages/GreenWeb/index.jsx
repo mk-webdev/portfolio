@@ -43,11 +43,6 @@ const GreenWeb = () => {
       {/* {pageData && data ? (
         <Cube renderNodeCube={renderNodeCube} setIndex={setIndex} data={data} />
       ) : null} */}
-      {/* <Particles
-        renderNode={renderNode}
-        particleImg={particleImg}
-        position={position}
-      /> */}
 
       {pageData ? <Contact pageData={pageData.custom_fields} /> : null}
     </>

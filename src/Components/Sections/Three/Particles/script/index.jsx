@@ -62,8 +62,6 @@ const ParticleEffect = ({ particleImg, position }) => {
     let discard = true;
 
     if (discard) {
-      // discard pixels darker than threshold #22
-
       numVisible = 0;
       threshold = 34;
 
@@ -102,7 +100,6 @@ const ParticleEffect = ({ particleImg, position }) => {
       blending: AdditiveBlending,
     });
 
-    //ggf useMemo
     const ibg = new InstancedBufferGeometry();
     // positions
     const positions = new BufferAttribute(new Float32Array(4 * 3), 3);
@@ -111,7 +108,6 @@ const ParticleEffect = ({ particleImg, position }) => {
     positions.setXYZ(2, -0.5, -0.5, 0.0);
     positions.setXYZ(3, 0.5, -0.5, 0.0);
     ibg.attributes.position = positions;
-
     // uvs
     const uvs = new BufferAttribute(new Float32Array(4 * 2), 2);
     uvs.setXYZ(0, 0.0, 0.0);
