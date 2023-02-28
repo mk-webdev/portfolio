@@ -1,56 +1,9 @@
-import React, { useContext, useLayoutEffect } from "react";
-import gsap from "gsap";
-import { Context } from "../Helpers/Context";
+import React from "react";
 
 const Contact = ({ pageData }) => {
-  const page = useContext(Context)[2];
-
-  const position = "Contact";
-  let textSlider;
   let contactCTAs;
 
-  //TODO TextSlider für Home speziell auslagern um folgenden Fehler zu umgehen:
-  //   Warning: React has detected a change in the order of Hooks called by Contact. This will lead to bugs and errors if not fixed. For more information, read the Rules of Hooks: https://reactjs.org/link/rules-of-hooks
-
-  //   Previous render            Next render
-  //   ------------------------------------------------------
-  // 1. useContext                 useContext
-  // 2. undefined                  useLayoutEffect
-  //   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-  // if (page === "Home" && pageData) {
-  //   useLayoutEffect(() => {
-  //     let snapshot = gsap.context(() => {
-  //       gsap.to(".firstLine", {
-  //         transform: "translateX(-5%)",
-  //         duration: 20,
-  //         yoyo: true,
-  //         repeat: -1,
-  //         ease: "none",
-  //       });
-  //       gsap.to(".secondLine", {
-  //         transform: "translateX(-97%)",
-  //         duration: 20,
-  //         yoyo: true,
-  //         repeat: -1,
-  //         ease: "none",
-  //       });
-  //     });
-  //     return () => snapshot.revert();
-  //   }, [pageData]);
-  // }
-
   if (pageData) {
-    textSlider = (
-      <div className="relative">
-        <p className="keywords firstLine -translate-x-full">
-          {pageData.Keywords1}
-        </p>
-        <p className="keywords secondLine translate-x-[5%]">
-          {pageData.Keywords2}
-        </p>
-      </div>
-    );
     contactCTAs = (
       <div className="flex flex-col my-16 md:mt-32 md:mb-24 xl:mt-64 xl:mb-16">
         <div>
@@ -89,11 +42,6 @@ const Contact = ({ pageData }) => {
     );
   }
 
-  return (
-    <>
-      {page === "Home" ? textSlider : ""}
-      {contactCTAs}
-    </>
-  );
+  return <>{contactCTAs}</>;
 };
 export default Contact;

@@ -9,6 +9,11 @@
   p {
     @apply leading-relaxed;
   }
+  p,
+  h1,
+  a {
+    @apply selection:bg-primary selection:text-dark;
+  }
 }
 
 @layer components {

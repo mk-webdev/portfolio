@@ -4,6 +4,7 @@ import Contact from "../../Sections/Contact";
 import { Context } from "../../Helpers/Context";
 import ParticleEffect from "../../Sections/Three/Particles/script";
 import MK from "../../Sections/Three/MK";
+import SidescrollText from "../../Sections/SidescrollText";
 
 const Home = () => {
   const lang = useContext(Context)[0];
@@ -32,6 +33,7 @@ const Home = () => {
         <ParticleEffect particleImg={particleImg} position={position} />
       </section>
       <MK />
+      <SidescrollText pageData={pageData.custom_fields} />
       {pageData ? <Contact pageData={pageData.custom_fields} /> : null}
     </>
   );
