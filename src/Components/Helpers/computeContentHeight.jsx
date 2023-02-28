@@ -32,8 +32,8 @@ const computeContentHeight = () => {
       }
     }
   }
-  // useEffect(() => {
-  handleResize();
-  // }, []);
+  useEffect(() => {
+    handleResize();
+  }, []);
 };
 export default computeContentHeight;

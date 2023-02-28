@@ -11,7 +11,10 @@
   }
   p,
   h1,
-  a {
+  h2,
+  a,
+  code,
+  figcaption {
     @apply selection:bg-primary selection:text-dark;
   }
 }
