@@ -6,7 +6,7 @@ import {
 } from "react-router-dom";
 import Layout from "../Layout/Layout";
 import Home from "../Pages/Home";
-import GreenWeb from "../Pages/GreenWeb";
+import References from "../Pages/References";
 import WebDev from "../Pages/WebDev";
 import Error from "../Error";
 
@@ -17,7 +17,7 @@ export const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Layout />}>
       <Route index element={<Home />} />
-      <Route path="/greenweb" element={<GreenWeb />} />
+      <Route path="/references" element={<References />} />
       <Route path="/webdev" element={<WebDev />} />
       <Route path="*" element={<Error />} />
     </Route>

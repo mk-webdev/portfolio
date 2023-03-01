@@ -7,8 +7,8 @@ import { Color, MeshBasicMaterial, Vector3 } from "three";
 const vec = new Vector3();
 //TODO Optimize Obj (Color, Thickness, Size)
 function Rig() {
-  return useFrame(({ camera, mouse }) => {
-    vec.set(mouse.x * 2, mouse.y * 2, camera.position.z);
+  return useFrame(({ camera, pointer }) => {
+    vec.set(pointer.x * 2, pointer.y * 2, camera.position.z);
     camera.position.lerp(vec, 0.025);
     camera.lookAt(0, 0, 0);
   });
