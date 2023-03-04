@@ -8,8 +8,8 @@ const vec = new Vector3();
 //TODO Optimize Obj (Color, Thickness, Size)
 function Rig() {
   return useFrame(({ camera, pointer }) => {
-    vec.set(pointer.x * 2, pointer.y * 2, camera.position.z);
-    camera.position.lerp(vec, 0.025);
+    vec.set(pointer.x, pointer.y, camera.position.z);
+    camera.position.lerp(vec, 0.005);
     camera.lookAt(0, 0, 0);
   });
 }

@@ -21,12 +21,8 @@ const Header = () => {
       window.localStorage.getItem("NAV_POSITION")
     );
     switch (positionLocalStorage) {
-      case "Sustainability":
+      case "References":
         gsap.to("main", {
-          opacity: 1,
-          delay: 0.6,
-        });
-        gsap.to("#particles", {
           opacity: 1,
           delay: 0.6,
         });
@@ -34,16 +30,12 @@ const Header = () => {
           left: "1.5%",
           transform: "none",
           onComplete: () => {
-            navigate("/greenweb");
+            navigate("/references");
           },
         });
         break;
       case "Home":
         gsap.to("main", {
-          opacity: 1,
-          delay: 0.6,
-        });
-        gsap.to("#particles", {
           opacity: 1,
           delay: 0.6,
         });
@@ -57,10 +49,6 @@ const Header = () => {
         break;
       case "WebDev":
         gsap.to("main", {
-          opacity: 1,
-          delay: 0.6,
-        });
-        gsap.to("#particles", {
           opacity: 1,
           delay: 0.6,
         });
@@ -91,20 +79,17 @@ const Header = () => {
                   gsap.to(navCircle.current, {
                     left: "1.5%",
                     transform: "none",
-                  }),
-                    gsap.to("#particles", {
-                      opacity: 0,
-                    }),
-                    gsap.to("main", {
-                      opacity: 0,
-                      onComplete: () => {
-                        setPosition("Sustainability");
-                      },
-                    });
+                  });
+                  gsap.to("main", {
+                    opacity: 0,
+                    onComplete: () => {
+                      setPosition("References");
+                    },
+                  });
                 }}
-                to="/greenweb"
+                to="/references"
                 className="first inline-block max-w-[1.5rem] overflow-hidden opacity-0">
-                Sustainability
+                References
               </NavLink>
             </li>
             <li className="h-6 relative nav-after">
@@ -115,9 +100,6 @@ const Header = () => {
                     left: "50%",
                     transform: "translateX(-50%)",
                   }),
-                    gsap.to("#particles", {
-                      opacity: 0,
-                    }),
                     gsap.to("main", {
                       opacity: 0,
                       onComplete: () => {
@@ -138,9 +120,6 @@ const Header = () => {
                     left: "66%",
                     transform: "none",
                   }),
-                    gsap.to("#particles", {
-                      opacity: 0,
-                    }),
                     gsap.to("main", {
                       opacity: 0,
                       onComplete: () => {

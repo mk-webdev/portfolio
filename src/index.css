@@ -24,7 +24,10 @@
     @apply after:content-[''] after:absolute after:inset-0 after:w-6 after:h-6 after:bg-light after:opacity-[0.15] after:rounded-full after:pointer-events-none;
   }
   .heading {
-    @apply w-min mb-8  font-serif text-xl text-light lowercase leading-tight decoration-2 underline-offset-8  underline xl:decoration-4 xl:underline-offset-[1rem] xl:text-2xl xl:mb-16;
+    @apply w-min mb-8 font-serif text-xl text-light lowercase leading-tight decoration-2 underline-offset-8 underline xl:decoration-4 xl:underline-offset-[1rem] xl:text-2xl xl:mb-16;
+  }
+  .heading-reference {
+    @apply w-min font-serif text-lg text-light lowercase leading-none whitespace-nowrap xl:text-xl;
   }
   .keywords {
     @apply w-max font-serif text-2xl leading-none lowercase whitespace-nowrap xl:text-3xl;

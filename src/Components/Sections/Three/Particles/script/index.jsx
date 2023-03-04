@@ -27,7 +27,7 @@ const ParticleEffect = ({ particleImg, position }) => {
     case "WebDev":
       src = "./earth.webp";
       break;
-    case "Sustainability":
+    case "References":
       src = "./flower.webp";
       break;
   }
