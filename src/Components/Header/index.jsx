@@ -4,13 +4,15 @@ import { Context } from "../Helpers/Context";
 import gsap from "gsap";
 
 const Header = () => {
-  //TODO Fade InOut Animation of Content
+  //TODO show-state über navCircle steuern und diesen an die Unterseiten weitergeben, basierend auf diesen den Inhalt der Seiten returnen
+  //TranslateX Positionsproblem ggf. über eigene Selektoren in den jeweiligen Content Sections lösen
   const navCircle = useRef();
   const navigate = useNavigate();
 
   const lang = useContext(Context)[0];
   const setLang = useContext(Context)[1];
   const position = useContext(Context)[2];
+  console.log("🚀 ~ file: index.jsx:14 ~ Header ~ position:", position);
   const setPosition = useContext(Context)[3];
 
   useEffect(() => {
@@ -23,12 +25,14 @@ const Header = () => {
     switch (positionLocalStorage) {
       case "References":
         gsap.to("main", {
-          opacity: 1,
-          delay: 0.6,
+          // opacity: 1,
+          transform: "translateX(0)",
+          // delay: 0.6,
         });
         gsap.to(navCircle.current, {
           left: "1.5%",
           transform: "none",
+          delay: 0.6,
           onComplete: () => {
             navigate("/references");
           },
@@ -36,12 +40,14 @@ const Header = () => {
         break;
       case "Home":
         gsap.to("main", {
-          opacity: 1,
-          delay: 0.6,
+          // opacity: 1,
+          transform: "translateX(0)",
+          // delay: 0.6,
         });
         gsap.to(navCircle.current, {
           left: "50%",
           transform: "translateX(-50%)",
+          delay: 0.6,
           onComplete: () => {
             navigate("/");
           },
@@ -49,12 +55,14 @@ const Header = () => {
         break;
       case "WebDev":
         gsap.to("main", {
-          opacity: 1,
-          delay: 0.6,
+          // opacity: 1,
+          transform: "translateX(0)",
+          // delay: 0.6,
         });
         gsap.to(navCircle.current, {
           left: "66%",
           transform: "none",
+          delay: 0.6,
           onComplete: () => {
             navigate("/webdev");
           },
@@ -81,7 +89,8 @@ const Header = () => {
                     transform: "none",
                   });
                   gsap.to("main", {
-                    opacity: 0,
+                    // opacity: 0,
+                    transform: "translateX(100%)",
                     onComplete: () => {
                       setPosition("References");
                     },
@@ -101,7 +110,8 @@ const Header = () => {
                     transform: "translateX(-50%)",
                   }),
                     gsap.to("main", {
-                      opacity: 0,
+                      // opacity: 0,
+                      transform: "translateX(-100%)",
                       onComplete: () => {
                         setPosition("Home");
                       },
@@ -121,7 +131,8 @@ const Header = () => {
                     transform: "none",
                   }),
                     gsap.to("main", {
-                      opacity: 0,
+                      // opacity: 0,
+                      transform: "translateX(-100%)",
                       onComplete: () => {
                         setPosition("WebDev");
                       },

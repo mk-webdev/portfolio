@@ -28,7 +28,7 @@ const ParticleEffect = ({ particleImg, position }) => {
       src = "./earth.webp";
       break;
     case "References":
-      src = "./flower.webp";
+      src = "./laptop.webp";
       break;
   }
   let width, height;
