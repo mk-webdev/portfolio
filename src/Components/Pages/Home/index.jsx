@@ -3,7 +3,6 @@ import { useMetaData, useDataFilter } from "../../Helpers/customHooks";
 import Contact from "../../Sections/Contact";
 import { Context } from "../../Helpers/Context";
 import ParticleEffect from "../../Sections/Three/Particles/script";
-import MK from "../../Sections/Three/MK";
 import SidescrollText from "../../Sections/SidescrollText";
 
 const Home = () => {
@@ -32,7 +31,11 @@ const Home = () => {
         </article>
         <ParticleEffect particleImg={particleImg} position={position} />
       </section>
-      <MK />
+      <div className="h-96 md:h-[75vh]">
+        <img className="h-36" src="./m.svg" alt="Stilisiertes M" />
+        <img className="h-36" src="./k.svg" alt="Stilisiertes K" />
+      </div>
+      {/* <MK /> */}
       <SidescrollText pageData={pageData.custom_fields} />
       {pageData ? <Contact pageData={pageData.custom_fields} /> : null}
     </>

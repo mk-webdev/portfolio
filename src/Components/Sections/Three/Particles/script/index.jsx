@@ -167,7 +167,7 @@ const ParticleEffect = ({ particleImg, position }) => {
   return (
     <div
       id="particles"
-      className="ml-auto w-5/6 order-1 lg:order-2 lg:absolute lg:-right-[15%] lg:h-screen">
+      className="ml-auto w-5/6 order-1 lg:order-2 lg:absolute lg:-right-[15%] lg:h-[90vh]">
       <Canvas
         dispose={null}
         camera={{ fov: 50, near: 1, far: 10000, position: [0, 0, 300] }}>
