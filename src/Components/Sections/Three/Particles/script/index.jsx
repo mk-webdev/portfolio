@@ -1,4 +1,5 @@
-import React, { useRef } from "react";
+import React, { useRef, useContext } from "react";
+import { Context } from "../../../../Helpers/Context";
 import { Canvas, useFrame, useLoader } from "@react-three/fiber";
 import {
   TextureLoader,
@@ -15,7 +16,8 @@ import gsap from "gsap";
 import vertexShader from "../shader/vertex.glsl?raw";
 import fragmentShader from "../shader/fragment.glsl?raw";
 
-const ParticleEffect = ({ particleImg, position }) => {
+const ParticleEffect = () => {
+  const position = useContext(Context)[2];
   //TODO googlen zu CORS Fehler bei particleImg ggf. extra media fetch machen
   // let src = particleImg;
   //Übergangslösung:
