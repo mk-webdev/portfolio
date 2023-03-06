@@ -28,7 +28,7 @@ const Header = () => {
             // ["#references", "#particles"],
             "main",
             {
-              transform: "translateX(-100%)",
+              transform: "translateX(-120%)",
             },
             {
               transform: "translateX(0)",
@@ -50,7 +50,7 @@ const Header = () => {
             // ["#home", "#particles"],
             "main",
             {
-              transform: "translateX(100%)",
+              transform: "translateX(120%)",
             },
             { transform: "translateX(0)" }
           );
@@ -59,7 +59,7 @@ const Header = () => {
             // ["#home", "#particles"],
             "main",
             {
-              transform: "translateX(-100%)",
+              transform: "translateX(-120%)",
             },
             { transform: "translateX(0)" }
           );
@@ -79,7 +79,7 @@ const Header = () => {
             // ["#webdev", "#particles"],
             "main",
             {
-              transform: "translateX(100%)",
+              transform: "translateX(120%)",
             },
             {
               transform: "translateX(0)",
@@ -108,7 +108,7 @@ const Header = () => {
           // ["#references", "#particles"],
           "main",
           {
-            transform: "translateX(-100%)",
+            transform: "translateX(-120%)",
             onComplete: () => {
               setPosition("Home");
             },
@@ -120,7 +120,7 @@ const Header = () => {
           // ["#webdev", "#particles"],
           "main",
           {
-            transform: "translateX(100%)",
+            transform: "translateX(120%)",
             onComplete: () => {
               setPosition("Home");
             },
@@ -146,7 +146,7 @@ const Header = () => {
                     // ["#home", "#webdev", "#particles"],
                     "main",
                     {
-                      transform: "translateX(100%)",
+                      transform: "translateX(150%)",
                       onComplete: () => {
                         setPosition("References");
                       },
@@ -185,7 +185,7 @@ const Header = () => {
                       // ["#home", "#references", "#particles"],
                       "main",
                       {
-                        transform: "translateX(-100%)",
+                        transform: "translateX(-150%)",
                         onComplete: () => {
                           setPosition("WebDev");
                         },
