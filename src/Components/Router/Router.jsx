@@ -16,9 +16,13 @@ import Error from "../Error";
 export const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Layout />}>
-      <Route index element={<Home />} />
-      <Route path="/references" element={<References />} />
-      <Route path="/webdev" element={<WebDev />} />
+      <Route index element={<Home />} errorElement={<Error />} />
+      <Route
+        path="/references"
+        element={<References />}
+        errorElement={<Error />}
+      />
+      <Route path="/webdev" element={<WebDev />} errorElement={<Error />} />
       <Route path="*" element={<Error />} />
     </Route>
   )

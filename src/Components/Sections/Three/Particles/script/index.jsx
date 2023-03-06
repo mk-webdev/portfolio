@@ -1,4 +1,5 @@
 import React, { useRef, useContext } from "react";
+import { useRouteError } from "react-router-dom";
 import { Context } from "../../../../Helpers/Context";
 import { Canvas, useFrame, useLoader } from "@react-three/fiber";
 import {
@@ -22,6 +23,7 @@ const ParticleEffect = () => {
   // let src = particleImg;
   //Übergangslösung:
   let src;
+
   switch (position) {
     case "Home":
       src = "./marco.webp";
@@ -32,7 +34,11 @@ const ParticleEffect = () => {
     case "References":
       src = "./laptop.webp";
       break;
+    case "Error":
+      src = "./404.webp";
+      break;
   }
+
   let width, height;
 
   const Particles = () => {
