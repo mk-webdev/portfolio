@@ -14,7 +14,8 @@
   h2,
   a,
   code,
-  figcaption {
+  figcaption,
+  img {
     @apply selection:bg-primary selection:text-dark;
   }
 }
@@ -34,155 +35,37 @@
   }
 
   .skills .logos {
-    @apply grid gap-y-8 grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5;
+    @apply grid grid-cols-2 gap-y-8 gap-x-4 sm:grid-cols-3 sm:gap-x-8 md:grid-cols-4 md:gap-x-8 2xl:grid-cols-5 2xl:gap-x-16;
   }
   .skills .logos > figure {
     @apply flex flex-col items-center max-w-xs rounded-full;
   }
   .skills .logos img {
     aspect-ratio: 1/1;
-    @apply w-32 p-3 mb-1 border-4 border-primary rounded-full;
+    @apply w-24 p-3 mb-1 border-2 border-primary rounded-full;
   }
   .skills code {
     white-space: break-spaces;
     @apply font-serif text-sm text-primary;
   }
-
-  :root {
-    --width-cub-1: 85vw;
-    --width-cub-2: 85vw;
-    --width-cub-3: 85vw;
+  .skill-container {
+    @apply w-screen sm:w-max max-w-[85vw] md:max-w-[650px] lg:max-w-[850px] xl:max-w-[1000px] 
+    first-of-type:w-96 first-of-type:order-3 first-of-type:col-span-5 first-of-type:md:col-start-2  first-of-type:2xl:col-start-3
+          
+    [&:nth-of-type(2)]:order-2 [&:nth-of-type(2)]:col-span-4 [&:nth-of-type(2)]:2xl:col-start-5 [&:nth-of-type(2)]:2xl:row-start-2 [&:nth-of-type(2)]:2xl:row-span-2 [&:nth-of-type(2)]:2xl:mt-28 [&:nth-of-type(2)]:2xl:ml-16
+          
+    last-of-type:order-1 last-of-type:col-span-4 last-of-type:md:col-start-1 last-of-type:2xl:col-start-1 last-of-type:2xl:col-span-3 last-of-type:2xl:row-span-3;
   }
-  @media screen(sm) {
-    :root {
-      --width-cub-1: 500px;
-    }
+  .shadow-3d-top {
+    box-shadow: -10px -10px 0 10px hsla(0, 0%, 7%, 1),
+      -20px -20px 0 1px hsla(151, 100%, 50%, 1);
   }
-  @media screen(md) {
-    :root {
-      --width-cub-3: 650px;
-    }
+  .pseudo-3d-top:before {
+    width: calc(100% + 4px);
+    @apply content-[''] absolute left-[-12px] top-[-22px] block h-[22px] border-x-2 border-t-[1px] border-primary skew-x-[42deg];
   }
-  @media screen(lg) {
-    :root {
-      --width-cub-2: 1000px;
-    }
-  }
-
-  .skills article:nth-of-type(1) .cuboid_top {
-    --height: 30px;
-    --depth: 40px;
-    height: var(--height);
-    width: var(--width-cub-1);
-    transform: rotateX(-9deg) rotateY(22deg);
-    transform-style: preserve-3d;
-    @apply relative;
-  }
-  .skills article:nth-of-type(1) .cuboid_bot {
-    --depth: 40px;
-    height: var(--height-content-1);
-    width: var(--width-cub-1);
-    transform: rotateX(-9deg) rotateY(22deg);
-    transform-style: preserve-3d;
-    @apply relative;
-  }
-  .skills article:nth-of-type(2) .cuboid_top {
-    --height: 30px;
-    --depth: 40px;
-    height: var(--height);
-    width: var(--width-cub-2);
-    transform: rotateX(-9deg) rotateY(22deg);
-    transform-style: preserve-3d;
-    @apply relative xl:ml-auto;
-  }
-  .skills article:nth-of-type(2) .cuboid_bot {
-    --depth: 40px;
-    height: var(--height-content-2);
-    width: var(--width-cub-2);
-    transform: rotateX(-9deg) rotateY(22deg);
-    transform-style: preserve-3d;
-    @apply relative xl:ml-auto xl:mb-24;
-  }
-  .skills article:nth-of-type(3) .cuboid_top {
-    --height: 30px;
-    --depth: 40px;
-    height: var(--height);
-    width: var(--width-cub-3);
-    transform: rotateX(-9deg) rotateY(22deg);
-    transform-style: preserve-3d;
-    @apply relative;
-  }
-  .skills article:nth-of-type(3) .cuboid_bot {
-    --depth: 40px;
-    height: var(--height-content-3);
-    width: var(--width-cub-3);
-    transform: rotateX(-9deg) rotateY(22deg);
-    transform-style: preserve-3d;
-    @apply relative;
-  }
-  .cuboid_side {
-    @apply absolute px-1 pt-[2px] border border-primary;
-  }
-  .cuboid_bot > .cuboid_side {
-    margin-top: -1px;
-    @apply py-3 border-t-0;
-  }
-
-  .cuboid_side:nth-of-type(1) {
-    --coefficient: 0.5;
-    height: var(--height);
-    width: var(--width);
-    transform: translate3d(0, 0, calc(var(--depth) * var(--coefficient)));
-    @apply bg-dark;
-  }
-  .cuboid_side:nth-of-type(2) {
-    --coefficient: -0.5;
-    height: var(--height);
-    width: var(--width);
-    transform: translate3d(0, 0, calc(var(--depth) * var(--coefficient)));
-    @apply border-r-0 border-b-0;
-  }
-  /*Seiten des Würfels*/
-  .cuboid_side:nth-of-type(3) {
-    --coefficient: -0.5;
-    height: var(--height);
-    width: var(--depth);
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%) rotateY(90deg)
-      translate3d(0, 0, calc(var(--width) * var(--coefficient)));
-  }
-  .cuboid_side:nth-of-type(4) {
-    --coefficient: -0.5;
-    height: var(--height);
-    width: var(--depth);
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%) rotateY(-90deg)
-      translate3d(0, 0, calc(var(--width) * var(--coefficient)));
-    @apply border-l-0;
-  }
-
-  article:nth-of-type(1) .cuboid_bot .cuboid_side {
-    height: var(--height-content-1);
-  }
-  article:nth-of-type(2) .cuboid_bot .cuboid_side {
-    height: var(--height-content-2);
-  }
-  article:nth-of-type(3) .cuboid_bot .cuboid_side {
-    height: var(--height-content-3);
-  }
-  article:nth-of-type(1) .cuboid_side {
-    --width: var(--width-cub-1);
-  }
-  article:nth-of-type(2) .cuboid_side {
-    --width: var(--width-cub-2);
-  }
-  article:nth-of-type(3) .cuboid_side {
-    --width: var(--width-cub-3);
-  }
-
-  .cube > canvas {
-    @apply absolute left-0;
+  .pseudo-3d-bot:before {
+    height: calc(100% + 2px);
+    @apply content-[''] absolute left-[-22px] top-[-13px] block w-[22px] border-[1px] border-y-2 border-r-0 border-primary skew-y-[49deg];
   }
 }

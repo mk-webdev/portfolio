@@ -1,12 +1,9 @@
 import React from "react";
-import computeContentHeight from "../Helpers/computeContentHeight";
 
 const Skills = ({ data }) => {
   let skills;
 
   if (data) {
-    computeContentHeight();
-
     let i = 0;
     skills = data.map((item, index) => {
       let content;
@@ -28,22 +25,16 @@ const Skills = ({ data }) => {
           break;
       }
       i++;
-
+      //3d Effekt mittels box-shadows erzielen
       return (
-        <article key={index}>
-          <div className="cuboid_top">
-            <div className="cuboid_side">
+        <article key={index} className="skill-container">
+          <div className="relative px-6 py-1 border border-b-0 border-primary shadow-3d-top pseudo-3d-top">
+            <div className="">
               <h2 className="font-serif text-primary">{item.title}</h2>
             </div>
-            <div className="cuboid_side"></div>
-            <div className="cuboid_side"></div>
-            <div className="cuboid_side"></div>
           </div>
-          <div className="cuboid_bot">
-            <div className="cuboid_side">{content}</div>
-            <div className="cuboid_side"></div>
-            <div className="cuboid_side"></div>
-            <div className="cuboid_side"></div>
+          <div className="relative px-6 py-4 border border-primary pseudo-3d-bot ">
+            <div className="">{content}</div>
           </div>
         </article>
       );
@@ -51,7 +42,7 @@ const Skills = ({ data }) => {
   }
 
   return (
-    <section className="skills flex flex-col-reverse gap-6 mt-16 md:mt-32 lg:mt-64">
+    <section className="skills grid grid-cols-5 gap-y-16 mt-16 md:mt-32 md:gap-y-28 lg:mt-64 2xl:grid-cols-8 2xl:grid-rows-3 ">
       {data ? skills : ""}
     </section>
   );
