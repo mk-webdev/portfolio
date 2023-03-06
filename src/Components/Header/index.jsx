@@ -1,19 +1,18 @@
-import React, { useContext, useRef, useEffect } from "react";
+import React, { useContext, useRef, useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { Context } from "../Helpers/Context";
 import gsap from "gsap";
 
 const Header = () => {
-  //TODO show-state über navCircle steuern und diesen an die Unterseiten weitergeben, basierend auf diesen den Inhalt der Seiten returnen
-  //TranslateX Positionsproblem ggf. über eigene Selektoren in den jeweiligen Content Sections lösen
   const navCircle = useRef();
   const navigate = useNavigate();
 
   const lang = useContext(Context)[0];
   const setLang = useContext(Context)[1];
   const position = useContext(Context)[2];
-  console.log("🚀 ~ file: index.jsx:14 ~ Header ~ position:", position);
   const setPosition = useContext(Context)[3];
+
+  const [exPos, setExPos] = useState();
 
   useEffect(() => {
     window.localStorage.setItem("NAV_POSITION", JSON.stringify(position));
@@ -24,55 +23,110 @@ const Header = () => {
     );
     switch (positionLocalStorage) {
       case "References":
-        gsap.to("main", {
-          // opacity: 1,
-          transform: "translateX(0)",
-          // delay: 0.6,
-        });
+        if (exPos) {
+          gsap.fromTo(
+            // ["#references", "#particles"],
+            "main",
+            {
+              transform: "translateX(-100%)",
+            },
+            {
+              transform: "translateX(0)",
+            }
+          );
+        }
+        setExPos("References");
         gsap.to(navCircle.current, {
           left: "1.5%",
           transform: "none",
-          delay: 0.6,
           onComplete: () => {
             navigate("/references");
           },
         });
         break;
       case "Home":
-        gsap.to("main", {
-          // opacity: 1,
-          transform: "translateX(0)",
-          // delay: 0.6,
-        });
-        gsap.to(navCircle.current, {
-          left: "50%",
-          transform: "translateX(-50%)",
-          delay: 0.6,
-          onComplete: () => {
-            navigate("/");
-          },
-        });
+        if (exPos == "References") {
+          gsap.fromTo(
+            // ["#home", "#particles"],
+            "main",
+            {
+              transform: "translateX(100%)",
+            },
+            { transform: "translateX(0)" }
+          );
+        } else if (exPos == "WebDev") {
+          gsap.fromTo(
+            // ["#home", "#particles"],
+            "main",
+            {
+              transform: "translateX(-100%)",
+            },
+            { transform: "translateX(0)" }
+          );
+        }
+        setExPos("Home"),
+          gsap.to(navCircle.current, {
+            left: "50%",
+            transform: "translateX(-50%)",
+            onComplete: () => {
+              navigate("/");
+            },
+          });
         break;
       case "WebDev":
-        gsap.to("main", {
-          // opacity: 1,
-          transform: "translateX(0)",
-          // delay: 0.6,
-        });
-        gsap.to(navCircle.current, {
-          left: "66%",
-          transform: "none",
-          delay: 0.6,
-          onComplete: () => {
-            navigate("/webdev");
-          },
-        });
+        if (exPos) {
+          gsap.fromTo(
+            // ["#webdev", "#particles"],
+            "main",
+            {
+              transform: "translateX(100%)",
+            },
+            {
+              transform: "translateX(0)",
+            }
+          );
+        }
+        setExPos("WebDev"),
+          gsap.to(navCircle.current, {
+            left: "66%",
+            transform: "none",
+            onComplete: () => {
+              navigate("/webdev");
+            },
+          });
         break;
     }
   }, [position, lang]);
 
   function setLanguage(lng) {
     setLang(lng);
+  }
+  function setAnimDirection() {
+    switch (position) {
+      case "References":
+        return gsap.to(
+          // ["#references", "#particles"],
+          "main",
+          {
+            transform: "translateX(-100%)",
+            onComplete: () => {
+              setPosition("Home");
+            },
+          }
+        );
+
+      case "WebDev":
+        return gsap.to(
+          // ["#webdev", "#particles"],
+          "main",
+          {
+            transform: "translateX(100%)",
+            onComplete: () => {
+              setPosition("Home");
+            },
+          }
+        );
+    }
   }
 
   return (
@@ -88,13 +142,16 @@ const Header = () => {
                     left: "1.5%",
                     transform: "none",
                   });
-                  gsap.to("main", {
-                    // opacity: 0,
-                    transform: "translateX(100%)",
-                    onComplete: () => {
-                      setPosition("References");
-                    },
-                  });
+                  gsap.to(
+                    // ["#home", "#webdev", "#particles"],
+                    "main",
+                    {
+                      transform: "translateX(100%)",
+                      onComplete: () => {
+                        setPosition("References");
+                      },
+                    }
+                  );
                 }}
                 to="/references"
                 className="first inline-block max-w-[1.5rem] overflow-hidden opacity-0">
@@ -109,13 +166,7 @@ const Header = () => {
                     left: "50%",
                     transform: "translateX(-50%)",
                   }),
-                    gsap.to("main", {
-                      // opacity: 0,
-                      transform: "translateX(-100%)",
-                      onComplete: () => {
-                        setPosition("Home");
-                      },
-                    });
+                    setAnimDirection();
                 }}
                 to="/"
                 className="inline-block max-w-[1.5rem] overflow-hidden opacity-0">
@@ -130,13 +181,16 @@ const Header = () => {
                     left: "66%",
                     transform: "none",
                   }),
-                    gsap.to("main", {
-                      // opacity: 0,
-                      transform: "translateX(-100%)",
-                      onComplete: () => {
-                        setPosition("WebDev");
-                      },
-                    });
+                    gsap.to(
+                      // ["#home", "#references", "#particles"],
+                      "main",
+                      {
+                        transform: "translateX(-100%)",
+                        onComplete: () => {
+                          setPosition("WebDev");
+                        },
+                      }
+                    );
                 }}
                 to="/webdev"
                 className="inline-block max-w-[1.5rem] overflow-hidden opacity-0">
