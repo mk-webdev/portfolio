@@ -29,8 +29,8 @@ const Home = () => {
         </article>
       </section>
       <div className="h-96 md:h-[75vh]">
-        <img className="h-36" src="./m.svg" alt="Stilisiertes M" />
-        <img className="h-36" src="./k.svg" alt="Stilisiertes K" />
+        <img className="h-72" src="./m.svg" alt="Stilisiertes M" />
+        <img className="h-72" src="./k.svg" alt="Stilisiertes K" />
       </div>
       <SidescrollText pageData={pageData.custom_fields} />
       {pageData ? <Contact pageData={pageData.custom_fields} /> : null}
