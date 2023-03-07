@@ -19,9 +19,7 @@ const References = () => {
   return (
     <>
       {meta ? meta : null}
-      <section
-        id={position.toLowerCase()}
-        className="flex flex-col lg:flex-row">
+      <section className="flex flex-col lg:flex-row">
         <article className="order-2 sm:-mt-32 lg:w-1/3 lg:mt-[25vh] lg:order-1 xl:w-1/2">
           <h1 className="heading">{pageData ? pageData.title : ""}</h1>
           <p className="max-w-lg lg:max-w-xl">
