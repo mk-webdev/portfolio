@@ -12,11 +12,11 @@ const ReferenceList = ({ postsData }) => {
       return (
         <article
           key={index}
-          className="flex flex-col even:flex-col-reverse even:md:justify-between mb-32 md:flex-row even:md:flex-row-reverse md:gap-x-24">
+          className="flex flex-col mb-16 even:lg:justify-between lg:flex-row even:lg:flex-row-reverse lg:gap-x-24 lg:mb-32">
           <a href={reference.custom_fields.Hyperlink} target="_blank">
             <picture>
               <img
-                className="grayscale hover:grayscale-0 transition-all duration-150 lg:w-[750px]"
+                className="mb-6 grayscale focus:grayscale-0 hover:grayscale-0 transition-all duration-150 lg:mb-0 lg:w-[750px]"
                 src={reference.featured_media}
                 alt={reference.title}
               />
@@ -37,7 +37,9 @@ const ReferenceList = ({ postsData }) => {
     });
   }
   return (
-    <section className="flex flex-col-reverse xl:pt-64">{references}</section>
+    <section className="flex flex-col-reverse pt-32 xl:pt-64">
+      {references}
+    </section>
   );
 };
 

@@ -1,4 +1,4 @@
-import React, { createContext, useState, useEffect, useMemo } from "react";
+import React, { createContext, useState, useEffect } from "react";
 import { useLocalStorage } from "./customHooks";
 import Loader from "../Sections/Loader";
 import axios from "axios";
@@ -17,18 +17,19 @@ export const ContextProvider = ({ children }) => {
   );
 
   //Fetch Data
-  const Base = "http://abschlussprojekt.namo/";
-  const BaseEn = "http://abschlussprojekt.namo/en/";
+  const Base = import.meta.env.VITE_REACT_APP_BASE;
+  const BaseEn = import.meta.env.VITE_REACT_APP_BASE_EN;
   const Queries = [
-    `wp-json/unc/v2/pages`,
-    `wp-json/unc/v2/posts`,
-    `wp-json/unc/v2/media`,
+    import.meta.env.VITE_REACT_APP_QUERY_PAGES,
+    import.meta.env.VITE_REACT_APP_QUERY_POSTS,
+    import.meta.env.VITE_REACT_APP_QUERY_MEDIA,
   ];
 
-  useMemo(() => {
+  useEffect(() => {
     const source = axios.CancelToken.source();
     let responseDataArray = [];
     setLoading(true);
+    console.log(Base, Queries);
 
     const requests = Queries.map((query) =>
       axios.get(lang === "en" ? BaseEn + query : Base + query)

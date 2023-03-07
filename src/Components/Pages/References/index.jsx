@@ -14,7 +14,6 @@ const References = () => {
     pageData = useDataFilter(data, position, "page")[0];
     meta = useMetaData(pageData.title, pageData.content, lang);
     postsData = useDataFilter(data, position, "posts");
-    console.log("🚀 ~ file: index.jsx:19 ~ References ~ postsData:", postsData);
   }
   return (
     <>

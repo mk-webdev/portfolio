@@ -33,7 +33,7 @@
     @apply mb-3 font-serif text-lg text-primary xl:text-xl;
   }
   .keywords {
-    @apply w-max font-serif text-2xl leading-none lowercase whitespace-nowrap xl:text-3xl;
+    @apply w-max font-serif text-2xl leading-none lowercase whitespace-nowrap lg:text-3xl;
   }
 
   .skills .logos {
