@@ -1,5 +1,4 @@
 import React, { useRef, useContext } from "react";
-import { useRouteError } from "react-router-dom";
 import { Context } from "../../../../Helpers/Context";
 import { Canvas, useFrame, useLoader } from "@react-three/fiber";
 import {

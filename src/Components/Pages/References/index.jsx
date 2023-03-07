@@ -29,7 +29,7 @@ const References = () => {
           </p>
         </article>
       </section>
-      <ReferenceList postsData={postsData} />
+      {postsData ? <ReferenceList postsData={postsData} /> : null}
       {pageData ? <Contact pageData={pageData.custom_fields} /> : null}
     </>
   );

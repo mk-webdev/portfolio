@@ -33,7 +33,7 @@ const Skills = ({ data }) => {
               <h2 className="font-serif text-primary">{item.title}</h2>
             </div>
           </div>
-          <div className="relative px-6 py-4 border border-primary pseudo-3d-bot ">
+          <div className="relative p-6 border border-primary pseudo-3d-bot ">
             <div className="">{content}</div>
           </div>
         </article>
