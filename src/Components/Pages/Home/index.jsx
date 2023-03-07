@@ -26,9 +26,17 @@ const Home = () => {
           </p>
         </article>
       </section>
-      <div className="h-96 md:h-[75vh]">
-        <img className="h-72" src="./m.svg" alt="Stilisiertes M" />
-        <img className="h-72" src="./k.svg" alt="Stilisiertes K" />
+      <div className="relative flex flex-col mt-24 mb-20 lg:mt-48 lg:mb-36 lg:mr-64">
+        <img
+          className="h-32 sm:h-48 md:h-72"
+          src="./m.svg"
+          alt="Stilisiertes M"
+        />
+        <img
+          className="h-32 ml-32 -mt-6 sm:h-48 sm:ml-48 sm:-mt-8 md:h-72 md:ml-72 md:-mt-12"
+          src="./k.svg"
+          alt="Stilisiertes K"
+        />
       </div>
       <SidescrollText pageData={pageData.custom_fields} />
       {pageData ? <Contact pageData={pageData.custom_fields} /> : null}
