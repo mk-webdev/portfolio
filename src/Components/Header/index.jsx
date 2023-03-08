@@ -202,7 +202,7 @@ const Header = () => {
             ref={navCircle}
             className="absolute top-0 left-1/2 -translate-x-1/2 w-6 h-6 bg-light rounded-full pointer-events-none"></div>
         </nav>
-        <ul className="flex">
+        <ul className="lang flex">
           <li className="pr-3 border-r border-r-light">
             <a
               onClick={() => {

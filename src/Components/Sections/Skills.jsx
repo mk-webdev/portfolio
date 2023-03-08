@@ -25,7 +25,6 @@ const Skills = ({ data }) => {
           break;
       }
       i++;
-      //3d Effekt mittels box-shadows erzielen
       return (
         <article key={index} className="skill-container">
           <div className="relative px-6 py-1 border border-b-0 border-primary shadow-3d-top pseudo-3d-top">

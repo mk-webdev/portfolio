@@ -5,7 +5,7 @@ const Contact = ({ pageData }) => {
 
   if (pageData) {
     contactCTAs = (
-      <section className="flex flex-col my-16 md:mt-32 md:mb-24 xl:mt-64 xl:mb-16">
+      <section className="contact flex flex-col my-16 md:mt-32 md:mb-24 xl:mt-64 xl:mb-16">
         <div>
           <p className="font-serif text-md leading-none lg:text-lg lg:leading-8 2xl:text-xl 2xl:leading-10">
             {pageData.EMail_CTA_Text}
