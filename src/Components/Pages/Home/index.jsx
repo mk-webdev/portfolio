@@ -38,7 +38,7 @@ const Home = () => {
           alt="Stilisiertes K"
         />
       </div>
-      <SidescrollText pageData={pageData.custom_fields} />
+      {pageData ? <SidescrollText pageData={pageData.custom_fields} /> : null}
       {pageData ? <Contact pageData={pageData.custom_fields} /> : null}
     </>
   );

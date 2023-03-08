@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Context } from "../Helpers/Context";
 import { useDataFilter, useMetaData } from "../Helpers/customHooks";
 
@@ -9,10 +9,12 @@ const Error = () => {
   const data = useContext(Context)[4];
   let pageData, meta;
 
-  setPosition("Error");
-  setTimeout(() => {
-    setPosition("Home");
-  }, 5000);
+  useEffect(() => {
+    setPosition("Error");
+    setTimeout(() => {
+      setPosition("Home");
+    }, 5000);
+  }, []);
 
   if (data) {
     pageData = useDataFilter(data, position, "page")[0];
