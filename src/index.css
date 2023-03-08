@@ -27,12 +27,13 @@
   .heading {
     @apply w-min mb-8 font-serif text-xl text-light lowercase leading-tight decoration-2 underline-offset-8 underline xl:decoration-4 xl:underline-offset-[1rem] xl:text-2xl xl:mb-16;
   }
-  .heading-reference {
+  .heading-work {
     white-space: break-spaces;
     line-height: 1.15;
     @apply mb-3 font-serif text-lg text-primary xl:text-xl;
   }
-  .lang a {
+  .lang a,
+  footer a {
     @apply relative before:content-[''] before:absolute before:-bottom-1 before:left-0 before:w-[0%] before:h-2 before:border-b-2 before:border-light hover:before:w-full before:transition-all before:duration-300;
   }
   .contact a {

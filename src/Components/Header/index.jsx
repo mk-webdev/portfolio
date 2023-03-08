@@ -22,10 +22,9 @@ const Header = () => {
       window.localStorage.getItem("NAV_POSITION")
     );
     switch (positionLocalStorage) {
-      case "References":
+      case "Works":
         if (exPos) {
           gsap.fromTo(
-            // ["#references", "#particles"],
             "main",
             {
               transform: "translateX(-120%)",
@@ -35,19 +34,18 @@ const Header = () => {
             }
           );
         }
-        setExPos("References");
+        setExPos("Works");
         gsap.to(navCircle.current, {
           left: "1.5%",
           transform: "none",
           onComplete: () => {
-            navigate("/references");
+            navigate("/works");
           },
         });
         break;
       case "Home":
-        if (exPos == "References") {
+        if (exPos == "Works") {
           gsap.fromTo(
-            // ["#home", "#particles"],
             "main",
             {
               transform: "translateX(120%)",
@@ -56,7 +54,6 @@ const Header = () => {
           );
         } else if (exPos == "WebDev") {
           gsap.fromTo(
-            // ["#home", "#particles"],
             "main",
             {
               transform: "translateX(-120%)",
@@ -76,7 +73,6 @@ const Header = () => {
       case "WebDev":
         if (exPos) {
           gsap.fromTo(
-            // ["#webdev", "#particles"],
             "main",
             {
               transform: "translateX(120%)",
@@ -103,29 +99,21 @@ const Header = () => {
   }
   function setAnimDirection() {
     switch (position) {
-      case "References":
-        return gsap.to(
-          // ["#references", "#particles"],
-          "main",
-          {
-            transform: "translateX(-120%)",
-            onComplete: () => {
-              setPosition("Home");
-            },
-          }
-        );
+      case "Works":
+        return gsap.to("main", {
+          transform: "translateX(-120%)",
+          onComplete: () => {
+            setPosition("Home");
+          },
+        });
 
       case "WebDev":
-        return gsap.to(
-          // ["#webdev", "#particles"],
-          "main",
-          {
-            transform: "translateX(120%)",
-            onComplete: () => {
-              setPosition("Home");
-            },
-          }
-        );
+        return gsap.to("main", {
+          transform: "translateX(120%)",
+          onComplete: () => {
+            setPosition("Home");
+          },
+        });
     }
   }
 
@@ -142,20 +130,16 @@ const Header = () => {
                     left: "1.5%",
                     transform: "none",
                   });
-                  gsap.to(
-                    // ["#home", "#webdev", "#particles"],
-                    "main",
-                    {
-                      transform: "translateX(150%)",
-                      onComplete: () => {
-                        setPosition("References");
-                      },
-                    }
-                  );
+                  gsap.to("main", {
+                    transform: "translateX(150%)",
+                    onComplete: () => {
+                      setPosition("Works");
+                    },
+                  });
                 }}
-                to="/references"
+                to="/works"
                 className="first inline-block max-w-[1.5rem] overflow-hidden opacity-0">
-                References
+                Works
               </NavLink>
             </li>
             <li className="h-6 relative nav-after">
@@ -181,16 +165,12 @@ const Header = () => {
                     left: "66%",
                     transform: "none",
                   }),
-                    gsap.to(
-                      // ["#home", "#references", "#particles"],
-                      "main",
-                      {
-                        transform: "translateX(-150%)",
-                        onComplete: () => {
-                          setPosition("WebDev");
-                        },
-                      }
-                    );
+                    gsap.to("main", {
+                      transform: "translateX(-150%)",
+                      onComplete: () => {
+                        setPosition("WebDev");
+                      },
+                    });
                 }}
                 to="/webdev"
                 className="inline-block max-w-[1.5rem] overflow-hidden opacity-0">

@@ -2,9 +2,9 @@ import React, { useContext } from "react";
 import { useMetaData, useDataFilter } from "../../Helpers/customHooks";
 import Contact from "../../Sections/Contact";
 import { Context } from "../../Helpers/Context";
-import ReferenceList from "../../Sections/ReferenceList";
+import WorksList from "../../Sections/WorksList";
 
-const References = () => {
+const Works = () => {
   const lang = useContext(Context)[0];
   const position = useContext(Context)[2];
   const data = useContext(Context)[4];
@@ -26,10 +26,10 @@ const References = () => {
           </p>
         </article>
       </section>
-      {postsData ? <ReferenceList postsData={postsData} /> : null}
+      {postsData ? <WorksList postsData={postsData} /> : null}
       {pageData ? <Contact pageData={pageData.custom_fields} /> : null}
     </>
   );
 };
 
-export default References;
+export default Works;

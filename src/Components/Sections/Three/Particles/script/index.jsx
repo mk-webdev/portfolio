@@ -30,7 +30,7 @@ const ParticleEffect = () => {
     case "WebDev":
       src = "./earth.webp";
       break;
-    case "References":
+    case "Works":
       src = "./laptop.webp";
       break;
     case "Error":
