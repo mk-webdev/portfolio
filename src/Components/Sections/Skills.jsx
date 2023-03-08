@@ -29,8 +29,9 @@ const Skills = ({ data }) => {
       return (
         <article key={index} className="skill-container">
           <div className="relative px-6 py-1 border border-b-0 border-primary shadow-3d-top pseudo-3d-top">
-            <div className="">
+            <div className="flex justify-between items-center">
               <h2 className="font-serif text-primary">{item.title}</h2>
+              <div className="relative w-3 h-7 text-primary after:content-['\00d7'] after:absolute after:block after:w-full after:h-full after:top-1/2 after:left-1/2 after:-translate-x-1/2 after:-translate-y-1/2 hover:rotate-180 transition-transform duration-300"></div>
             </div>
           </div>
           <div className="relative p-6 border border-primary pseudo-3d-bot ">
