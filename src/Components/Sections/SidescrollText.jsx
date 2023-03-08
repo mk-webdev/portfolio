@@ -2,10 +2,6 @@ import React, { useLayoutEffect } from "react";
 import gsap from "gsap";
 
 const SidescrollText = ({ pageData }) => {
-  console.log(
-    "🚀 ~ file: SidescrollText.jsx:5 ~ SidescrollText ~ pageData:",
-    pageData
-  );
   let textSlider;
 
   useLayoutEffect(() => {

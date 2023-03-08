@@ -79,4 +79,7 @@
     height: calc(100% + 2px);
     @apply content-[''] absolute left-[-22px] top-[-13px] block w-[22px] border-[1px] border-y-2 border-r-0 border-primary skew-y-[49deg];
   }
+  #imprint h2 {
+    @apply mt-12 text-lg xl:text-xl;
+  }
 }

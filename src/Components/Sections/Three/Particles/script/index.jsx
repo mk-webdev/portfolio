@@ -18,9 +18,6 @@ import fragmentShader from "../shader/fragment.glsl?raw";
 
 const ParticleEffect = () => {
   const position = useContext(Context)[2];
-  //TODO googlen zu CORS Fehler bei particleImg ggf. extra media fetch machen
-  // let src = particleImg;
-  //Übergangslösung:
   let src;
 
   switch (position) {
