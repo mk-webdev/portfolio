@@ -26,7 +26,7 @@ const Home = () => {
           </p>
         </article>
       </section>
-      <div className="relative flex flex-col mt-24 mb-20 lg:mt-48 lg:mb-36 lg:mr-64">
+      <div className="relative flex flex-col mt-24 mb-20 lg:mt-24 lg:mb-36 lg:mr-96 2xl:mr-[600px]">
         <img
           className="h-32 sm:h-48 md:h-72"
           src="./m.svg"
