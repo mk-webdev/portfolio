@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import Contact from "../../Sections/Contact";
 import { Context } from "../../Helpers/Context";
 import { useMetaData, useDataFilter } from "../../Helpers/customHooks";

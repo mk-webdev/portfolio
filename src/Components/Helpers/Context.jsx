@@ -52,7 +52,7 @@ export const ContextProvider = ({ children }) => {
     return () => {
       source.cancel();
     };
-  }, []);
+  }, [lang]);
 
   if (loading) return <Loader />;
 

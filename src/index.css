@@ -9,6 +9,10 @@
   p {
     @apply leading-relaxed;
   }
+  h1,
+  h2 {
+    @apply font-serif;
+  }
   p,
   h1,
   h2,
@@ -25,12 +29,12 @@
     @apply after:content-[''] after:absolute after:inset-0 after:w-6 after:h-6 after:bg-light after:opacity-[0.15] after:rounded-full after:pointer-events-none;
   }
   .heading {
-    @apply w-min mb-8 font-serif text-xl text-light lowercase leading-tight decoration-2 underline-offset-8 underline xl:decoration-4 xl:underline-offset-[1rem] xl:text-2xl xl:mb-16;
+    @apply w-min mb-8 text-xl text-light lowercase leading-tight decoration-2 underline-offset-8 underline xl:decoration-4 xl:underline-offset-[1rem] xl:text-2xl xl:mb-16;
   }
   .heading-work {
     white-space: break-spaces;
     line-height: 1.15;
-    @apply mb-3 font-serif text-lg text-primary xl:text-xl;
+    @apply mb-3 text-lg text-primary xl:text-xl;
   }
   .lang a,
   footer a {

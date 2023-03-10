@@ -17,6 +17,7 @@ const Header = () => {
   useEffect(() => {
     window.localStorage.setItem("NAV_POSITION", JSON.stringify(position));
     window.localStorage.setItem("SITE_LANGUAGE", JSON.stringify(lang));
+    console.log(lang);
 
     let positionLocalStorage = JSON.parse(
       window.localStorage.getItem("NAV_POSITION")
@@ -187,6 +188,8 @@ const Header = () => {
             <a
               onClick={() => {
                 setLanguage("de");
+                navigate("/");
+                // location.reload();
               }}
               href="#">
               de
@@ -196,6 +199,7 @@ const Header = () => {
             <a
               onClick={() => {
                 setLanguage("en");
+                // location.reload();
               }}
               href="#">
               en

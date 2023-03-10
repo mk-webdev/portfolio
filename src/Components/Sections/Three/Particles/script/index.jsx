@@ -22,7 +22,7 @@ const ParticleEffect = () => {
 
   switch (position) {
     case "Home":
-      src = "./marcotest.webp";
+      src = "./marco.webp";
       posClass = "home";
       break;
     case "WebDev":
@@ -177,7 +177,7 @@ const ParticleEffect = () => {
       <Canvas
         dispose={null}
         camera={{ fov: 50, near: 1, far: 10000, position: [0, 0, 300] }}
-        style={{ "pointer-events": "none" }}>
+        style={{ pointerEvents: "none" }}>
         <Particles />
       </Canvas>
     </div>
