@@ -18,20 +18,24 @@ import fragmentShader from "../shader/fragment.glsl?raw";
 
 const ParticleEffect = () => {
   const position = useContext(Context)[2];
-  let src;
+  let src, posClass;
 
   switch (position) {
     case "Home":
-      src = "./marco.webp";
+      src = "./marcotest.webp";
+      posClass = "home";
       break;
     case "WebDev":
       src = "./earth.webp";
+      posClass = "webdev";
       break;
     case "Works":
       src = "./laptop.webp";
+      posClass = "works";
       break;
     case "Error":
       src = "./404.webp";
+      posClass = "Error";
       break;
   }
 
@@ -169,12 +173,11 @@ const ParticleEffect = () => {
   };
 
   return (
-    <div
-      id="particles"
-      className="h-72 mt-10 order-1 sm:h-96 sm:mb-16 md:w-5/6 md:ml-auto lg:order-2 lg:absolute lg:-right-[15%] lg:h-[80vh] lg:w-4/6 2xl:h-[90vh] 2xl:w-5/6">
+    <div id="particles" className={position.toLowerCase()}>
       <Canvas
         dispose={null}
-        camera={{ fov: 50, near: 1, far: 10000, position: [0, 0, 300] }}>
+        camera={{ fov: 50, near: 1, far: 10000, position: [0, 0, 300] }}
+        style={{ "pointer-events": "none" }}>
         <Particles />
       </Canvas>
     </div>

@@ -39,11 +39,31 @@
   .contact a {
     @apply hover:text-light transition-colors duration-500;
   }
+  #particles {
+    @apply h-72 mt-10 pointer-events-none sm:h-96 sm:mb-16 md:w-5/6 md:ml-auto lg:absolute;
+  }
+  #particles.home {
+    @apply lg:-right-[15%] lg:h-[80vh] lg:w-5/6 2xl:-right-[20%] 2xl:-top-16 2xl:h-screen 2xl:w-full;
+  }
+  #particles.works {
+    @apply lg:-right-[15%] lg:-top-10 lg:h-[80vh] lg:w-5/6 2xl:-right-[20%] 2xl:-top-16 2xl:h-screen 2xl:w-full;
+  }
+  #particles.webdev {
+    @apply lg:-right-[15%] lg:h-[80vh] lg:w-5/6 2xl:-right-[22%] 2xl:-top-10 2xl:h-screen 2xl:w-full;
+  }
+  #particles.error {
+    @apply lg:right-0 lg:h-[80vh] lg:w-4/6 xl:-right-[10%] 2xl:-right-[15%] 2xl:-top-10 2xl:h-screen 2xl:w-5/6;
+  }
   .keywords {
     @apply w-max font-serif text-2xl leading-none lowercase whitespace-nowrap lg:text-3xl;
   }
   .skills .logos {
-    @apply grid grid-cols-2 gap-y-8 gap-x-4 sm:grid-cols-3 sm:gap-x-8 md:grid-cols-4 md:gap-x-8 2xl:grid-cols-5 2xl:gap-x-16;
+    @apply grid grid-cols-2 gap-y-8 gap-x-4 sm:grid-cols-3 sm:gap-x-8 md:grid-cols-4 md:gap-x-8;
+  }
+  @media (min-width: 1750px) {
+    .skills .logos {
+      @apply grid-cols-5 gap-x-16;
+    }
   }
   .skills .logos > figure {
     @apply flex flex-col items-center max-w-xs rounded-full;
@@ -63,7 +83,7 @@
     @apply w-screen sm:w-max max-w-[85vw] md:max-w-[650px] lg:max-w-[850px] xl:max-w-[1000px] 
     first-of-type:w-96 first-of-type:order-3 first-of-type:col-span-5 first-of-type:md:col-start-2  first-of-type:2xl:col-start-3
           
-    [&:nth-of-type(2)]:order-2 [&:nth-of-type(2)]:col-span-4 [&:nth-of-type(2)]:2xl:col-start-5 [&:nth-of-type(2)]:2xl:row-start-2 [&:nth-of-type(2)]:2xl:row-span-2 [&:nth-of-type(2)]:2xl:mt-28 [&:nth-of-type(2)]:2xl:ml-16
+    [&:nth-of-type(2)]:order-2 [&:nth-of-type(2)]:col-span-4 [&:nth-of-type(2)]:lg:col-start-3 [&:nth-of-type(2)]:xl:col-start-4 [&:nth-of-type(2)]:2xl:col-start-5 [&:nth-of-type(2)]:2xl:row-start-2 [&:nth-of-type(2)]:2xl:row-span-2 [&:nth-of-type(2)]:2xl:mt-28 [&:nth-of-type(2)]:2xl:ml-16
           
     last-of-type:order-1 last-of-type:col-span-4 last-of-type:md:col-start-1 last-of-type:2xl:col-start-1 last-of-type:2xl:col-span-3 last-of-type:2xl:row-span-3;
   }

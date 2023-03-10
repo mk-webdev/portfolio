@@ -7,15 +7,15 @@ const SidescrollText = ({ pageData }) => {
   useLayoutEffect(() => {
     let snapshot = gsap.context(() => {
       gsap.to(".firstLine", {
-        transform: "translateX(-5%)",
-        duration: 20,
+        transform: "translateX(-45%)",
+        duration: 5,
         yoyo: true,
         repeat: -1,
         ease: "none",
       });
       gsap.to(".secondLine", {
         transform: "translateX(-97%)",
-        duration: 20,
+        duration: 10,
         yoyo: true,
         repeat: -1,
         ease: "none",
@@ -27,9 +27,7 @@ const SidescrollText = ({ pageData }) => {
   if (pageData) {
     textSlider = (
       <div className="relative">
-        <p className="keywords firstLine -translate-x-full">
-          {pageData.Keywords1}
-        </p>
+        <p className="keywords firstLine translate-x-0">{pageData.Keywords1}</p>
         <p className="keywords secondLine translate-x-[5%]">
           {pageData.Keywords2}
         </p>

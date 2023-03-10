@@ -8,7 +8,7 @@ const Layout = ({ children }) => {
   return (
     <>
       <Header />
-      <main className="container relative md:mx-auto lg:mx-0 lg:px-[6.25rem]">
+      <main className="container relative mx-auto">
         <ParticleEffect />
         {children}
         <Outlet />
