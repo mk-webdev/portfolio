@@ -2,25 +2,25 @@ import React, { useLayoutEffect } from "react";
 import gsap from "gsap";
 
 const SidescrollText = ({ pageData, lang }) => {
-  let textSlider, transformRange;
+  let textSlider, transformRangeTop;
 
   useLayoutEffect(() => {
     if (lang == "en") {
-      transformRange = "translateX(-58%)";
+      transformRangeTop = "translateX(-58%)";
     } else {
-      transformRange = "translateX(-60%)";
+      transformRangeTop = "translateX(-57%)";
     }
     let snapshot = gsap.context(() => {
       gsap.to(".firstLine", {
-        transform: transformRange,
-        duration: 10,
+        transform: transformRangeTop,
+        duration: 5,
         yoyo: true,
         repeat: -1,
         ease: "none",
       });
       gsap.to(".secondLine", {
         transform: "translateX(0)",
-        duration: 10,
+        duration: 5,
         yoyo: true,
         repeat: -1,
         ease: "none",
@@ -33,7 +33,7 @@ const SidescrollText = ({ pageData, lang }) => {
     textSlider = (
       <div className="relative">
         <p className="keywords firstLine translate-x-0">{pageData.Keywords1}</p>
-        <p className="keywords secondLine -translate-x-[60%]">
+        <p className="keywords secondLine -translate-x-[59%]">
           {pageData.Keywords2}
         </p>
       </div>
