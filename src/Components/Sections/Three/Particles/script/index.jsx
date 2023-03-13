@@ -18,24 +18,20 @@ import fragmentShader from "../shader/fragment.glsl?raw";
 
 const ParticleEffect = () => {
   const position = useContext(Context)[2];
-  let src, posClass;
+  let src;
 
   switch (position) {
     case "Home":
       src = "./marco.webp";
-      posClass = "home";
       break;
     case "WebDev":
       src = "./earth.webp";
-      posClass = "webdev";
       break;
     case "Works":
       src = "./laptop.webp";
-      posClass = "works";
       break;
     case "Error":
       src = "./404.webp";
-      posClass = "Error";
       break;
   }
 
@@ -46,7 +42,6 @@ const ParticleEffect = () => {
 
     useFrame(({ clock }) => {
       const delta = (clock.getDelta() + 0.01) * 2;
-      //   if (!particleMesh) return;
       particleMesh.current.material.uniforms.uTime.value += delta;
     });
 
@@ -58,7 +53,6 @@ const ParticleEffect = () => {
     width = texture.image.width;
     height = texture.image.height;
 
-    //init points
     let numPoints = width * height;
 
     let numVisible = numPoints;
@@ -107,21 +101,21 @@ const ParticleEffect = () => {
     });
 
     const ibg = new InstancedBufferGeometry();
-    // positions
+
     const positions = new BufferAttribute(new Float32Array(4 * 3), 3);
     positions.setXYZ(0, -0.5, 0.5, 0.0);
     positions.setXYZ(1, 0.5, 0.5, 0.0);
     positions.setXYZ(2, -0.5, -0.5, 0.0);
     positions.setXYZ(3, 0.5, -0.5, 0.0);
     ibg.attributes.position = positions;
-    // uvs
+
     const uvs = new BufferAttribute(new Float32Array(4 * 2), 2);
     uvs.setXYZ(0, 0.0, 0.0);
     uvs.setXYZ(1, 1.0, 0.0);
     uvs.setXYZ(2, 0.0, 1.0);
     uvs.setXYZ(3, 1.0, 1.0);
     ibg.attributes.uv = uvs;
-    // index
+
     ibg.setIndex(new BufferAttribute(new Uint16Array([0, 2, 1, 2, 3, 1]), 1));
 
     const indices = new Uint16Array(numVisible);
@@ -144,7 +138,6 @@ const ParticleEffect = () => {
     ibg.attributes.offset = new InstancedBufferAttribute(offsets, 3, false);
     ibg.attributes.angle = new InstancedBufferAttribute(angles, 1, false);
 
-    //show
     let time = 1.0;
     gsap.fromTo(
       shaderMaterial.uniforms.uSize,
