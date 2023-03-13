@@ -13,8 +13,11 @@ const WorksList = ({ postsData }) => {
         <article
           key={index}
           className="flex flex-col mb-16 even:lg:justify-between lg:flex-row even:lg:flex-row-reverse lg:gap-x-24 lg:mb-32 first-of-type:mb-0">
-          <a href={work.custom_fields.Hyperlink} target="_blank">
-            <picture>
+          <a
+            className="group"
+            href={work.custom_fields.Hyperlink}
+            target="_blank">
+            <picture className="hover-circle">
               <img
                 className="mb-6 grayscale focus:grayscale-0 hover:grayscale-0 transition-all duration-150 lg:mb-0 lg:w-[750px]"
                 src={work.featured_media}
@@ -37,7 +40,7 @@ const WorksList = ({ postsData }) => {
     });
   }
   return (
-    <section className="flex flex-col-reverse pt-32 lg:pt-64 2xl:pt-96">
+    <section className="works flex flex-col-reverse pt-32 lg:pt-64 2xl:pt-[400px]">
       {works}
     </section>
   );

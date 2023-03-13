@@ -29,7 +29,6 @@ export const ContextProvider = ({ children }) => {
     const source = axios.CancelToken.source();
     let responseDataArray = [];
     setLoading(true);
-    console.log(Base, Queries);
 
     const requests = Queries.map((query) =>
       axios.get(lang === "en" ? BaseEn + query : Base + query)
