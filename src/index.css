@@ -110,10 +110,9 @@
     @apply relative inline-block;
   }
   .hover-circle:after {
-    @apply content-[''] absolute z-20 -top-[0.7rem] -right-[0.7rem] w-0 h-0 rounded-full bg-[url('./arrow.svg')] bg-no-repeat bg-center rotate-45 transition-all duration-150 group-hover:w-[4rem] group-hover:h-[4rem];
-    /*@apply content-['↑'] absolute top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%]  pl-[31px] text-[0px] text-dark w-0 h-0 rounded-full bg-primary rotate-45  transition-all duration-150 group-hover:text-[3rem] group-hover:w-[5.5rem] group-hover:h-[5.5rem]; */
+    @apply content-[''] absolute z-20 -top-[13px] -right-[11px] w-0 h-0 rounded-full bg-[url('./arrow.svg')] bg-no-repeat bg-center bg-contain transition-all duration-150 group-hover:w-[1.85rem] group-hover:h-[2.25rem];
   }
   .hover-circle:before {
-    @apply content-[''] absolute z-10 -top-6 -right-6 w-0 h-0 rounded-full bg-primary transition-all duration-150 group-hover:w-[5.5rem] group-hover:h-[5.5rem];
+    @apply content-[''] absolute z-10 -top-6 -right-6 w-0 h-0 rounded-full bg-primary transition-all opacity-70 duration-150 group-hover:w-[3.5rem] group-hover:h-[3.5rem];
   }
 }

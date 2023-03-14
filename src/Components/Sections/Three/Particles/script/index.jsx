@@ -18,20 +18,24 @@ import fragmentShader from "../shader/fragment.glsl?raw";
 
 const ParticleEffect = () => {
   const position = useContext(Context)[2];
-  let src;
+  let src, posClass;
 
   switch (position) {
     case "Home":
       src = "./marco.webp";
+      posClass = "home";
       break;
     case "WebDev":
       src = "./earth.webp";
+      posClass = "webdev";
       break;
     case "Works":
       src = "./laptop.webp";
+      posClass = "works";
       break;
     case "Error":
       src = "./404.webp";
+      posClass = "Error";
       break;
   }
 
