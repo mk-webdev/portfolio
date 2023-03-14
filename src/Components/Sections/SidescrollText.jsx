@@ -13,14 +13,14 @@ const SidescrollText = ({ pageData, lang }) => {
     let snapshot = gsap.context(() => {
       gsap.to(".firstLine", {
         transform: transformRangeTop,
-        duration: 5,
+        duration: 10,
         yoyo: true,
         repeat: -1,
         ease: "none",
       });
       gsap.to(".secondLine", {
         transform: "translateX(0)",
-        duration: 5,
+        duration: 10,
         yoyo: true,
         repeat: -1,
         ease: "none",

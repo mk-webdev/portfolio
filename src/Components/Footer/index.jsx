@@ -4,10 +4,10 @@ import { Link } from "react-router-dom";
 const Footer = () => {
   return (
     <>
-      <footer className="container flex justify-between items-center mx-auto mb-8 mt-64 sm:mb-10">
+      <footer className="container flex justify-between items-center mx-auto mb-8 sm:mb-10">
         <div className="flex items-center gap-4">
           <img
-            className="w-[83px]"
+            className="w-[80px]"
             src="./cookie.svg"
             alt="Stilisierter Cookie"
           />
