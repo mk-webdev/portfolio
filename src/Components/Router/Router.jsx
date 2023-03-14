@@ -13,11 +13,11 @@ import Imprint from "../Pages/Imprint";
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<Layout />}>
-      <Route index element={<Home />} errorElement={<Error />} />
-      <Route path="/works" element={<Works />} errorElement={<Error />} />
-      <Route path="/webdev" element={<WebDev />} errorElement={<Error />} />
-      <Route path="/imprint" element={<Imprint />} errorElement={<Error />} />
+    <Route path="/" element={<Layout />} errorElement={<Error />}>
+      <Route index element={<Home />} />
+      <Route path="/works" element={<Works />} />
+      <Route path="/webdev" element={<WebDev />} />
+      <Route path="/imprint" element={<Imprint />} />
       <Route path="*" element={<Error />} />
     </Route>
   )

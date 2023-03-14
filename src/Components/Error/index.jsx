@@ -11,11 +11,9 @@ const Error = () => {
 
   useEffect(() => {
     setPosition("Error");
-    const timerId = setTimeout(() => {
+    setTimeout(() => {
       setPosition("Home");
     }, 5000);
-
-    return () => clearTimeout(timerId);
   }, []);
 
   if (data) {

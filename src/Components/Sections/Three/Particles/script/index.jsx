@@ -34,7 +34,7 @@ const ParticleEffect = () => {
       posClass = "works";
       break;
     case "Error":
-      src = "./404.webp";
+      src = "./error.webp";
       posClass = "Error";
       break;
   }

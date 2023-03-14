@@ -12,7 +12,7 @@ const WorksList = ({ postsData }) => {
       return (
         <article
           key={index}
-          className="flex flex-col mb-16 even:lg:justify-between lg:flex-row even:lg:flex-row-reverse lg:gap-x-24 lg:mb-32 first-of-type:mb-0">
+          className="flex flex-col mb-16 odd:lg:justify-between lg:flex-row odd:lg:flex-row-reverse lg:gap-x-24 lg:mb-32 first-of-type:mb-0">
           <a
             className="group"
             href={work.custom_fields.Hyperlink}
