@@ -1,26 +1,11 @@
-import React, { useContext, useLayoutEffect } from "react";
-import { HeaderContext } from "../Helpers/HeaderContext";
-import Loader from "./Loader";
-import { useFetch } from "../Helpers/customHooks";
-import computeContentHeight from "../Helpers/computeContentHeight";
+import React from "react";
 
-const Skills = () => {
-  const lang = useContext(HeaderContext)[0];
-  const position = useContext(HeaderContext)[2];
+const Skills = ({ data }) => {
   let skills;
 
-  const { data, loading, error } = useFetch(position, lang, "posts");
-
-  if (loading) return <Loader />; //Loader ggf in useFetch auslagern
-
-  if (error) console.log(error);
-
   if (data) {
-    computeContentHeight();
-
     let i = 0;
     skills = data.map((item, index) => {
-      console.log(index);
       let content;
       switch (i) {
         case 0:
@@ -40,31 +25,24 @@ const Skills = () => {
           break;
       }
       i++;
-
       return (
-        <article key={index}>
-          <div className="cuboid_top">
-            <div className="cuboid_side">
-              <h2 className="font-serif text-primary">{item.title}</h2>
+        <article key={index} className="skill-container">
+          <div className="relative px-6 py-1 border border-b-0 border-primary shadow-3d-top pseudo-3d-top">
+            <div className="flex justify-between items-center">
+              <h2 className="text-primary">{item.title}</h2>
+              <div className="relative w-3 h-7 text-primary after:content-['\00d7'] after:absolute after:block after:w-full after:h-full after:top-1/2 after:left-1/2 after:-translate-x-1/2 after:-translate-y-1/2 hover:rotate-180 transition-transform duration-300"></div>
             </div>
-            <div className="cuboid_side"></div>
-            <div className="cuboid_side"></div>
-            <div className="cuboid_side"></div>
           </div>
-          <div className="cuboid_bot">
-            <div className="cuboid_side">{content}</div>
-            <div className="cuboid_side"></div>
-            <div className="cuboid_side"></div>
-            <div className="cuboid_side"></div>
+          <div className="relative p-6 border border-primary pseudo-3d-bot ">
+            <div className="">{content}</div>
           </div>
         </article>
       );
     });
   }
-  console.log(data);
 
   return (
-    <section className="skills flex flex-col-reverse gap-6 mt-16 md:mt-32 lg:mt-64">
+    <section className="skills grid grid-cols-5 gap-y-16 mt-16 md:mt-32 md:gap-y-28 lg:mt-64 2xl:grid-cols-8 2xl:grid-rows-3 ">
       {data ? skills : ""}
     </section>
   );

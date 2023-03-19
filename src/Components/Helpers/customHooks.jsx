@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Helmet, HelmetProvider } from "react-helmet-async";
-import axios from "axios";
 
 export const useMetaData = (title, description, lang) => {
   return (
@@ -12,46 +11,6 @@ export const useMetaData = (title, description, lang) => {
       </Helmet>
     </HelmetProvider>
   );
-};
-
-export const useFetch = (position, lang, type) => {
-  const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-
-  const Base = "http://abschlussprojekt.namo/";
-  const BaseEn = "http://abschlussprojekt.namo/en/";
-  const Query = `wp-json/unc/v2/${type}`;
-
-  //TODO position based fetching, sobald api filterung zulässt
-  //(fetching so, dass gar nicht erst unnötige Daten gezogen werden)
-
-  useEffect(() => {
-    const source = axios.CancelToken.source();
-    setLoading(true);
-    axios
-      .get(lang === "en" ? BaseEn + Query : Base + Query)
-      .then((response) => {
-        const filtered = [];
-        for (let i = 0; i < response.data.length; i++) {
-          if (response.data[i].category === position) {
-            filtered.push(response.data[i]);
-          }
-        }
-        setData(filtered);
-      })
-      .catch((error) => {
-        setError(error);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-    return () => {
-      source.cancel();
-    };
-  }, [position, lang]);
-
-  return { data, loading, error };
 };
 
 function initialValue(item, value) {
@@ -68,4 +27,32 @@ export const useLocalStorage = (key, initValue) => {
   });
 
   return [value, setValue];
+};
+
+const filter = (data, position) => {
+  let pageData = [];
+  for (let i = 0; i < data.length; i++) {
+    if (data[i].category === position) {
+      pageData.push(data[i]);
+    }
+  }
+  return pageData;
+};
+
+export const useDataFilter = (data, position, type) => {
+  let filteredData;
+  switch (type) {
+    case "page":
+      filteredData = filter(data[0], position);
+      return filteredData;
+      break;
+    case "posts":
+      filteredData = filter(data[1], position);
+      return filteredData;
+      break;
+    case "media":
+      filteredData = filter(data[2], position);
+      return filteredData;
+      break;
+  }
 };

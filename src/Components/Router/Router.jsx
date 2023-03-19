@@ -6,19 +6,18 @@ import {
 } from "react-router-dom";
 import Layout from "../Layout/Layout";
 import Home from "../Pages/Home";
-import GreenWeb from "../Pages/GreenWeb";
 import WebDev from "../Pages/WebDev";
 import Error from "../Error";
-
-//TODO You can provide a way better UX than this when your app throws errors by providing your own errorElement props on <Route>
-// Fehler werden nicht richtig gecached -> nachsehen wieso
+import Works from "../Pages/Works";
+import Imprint from "../Pages/Imprint";
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<Layout />}>
+    <Route path="/" element={<Layout />} errorElement={<Error />}>
       <Route index element={<Home />} />
-      <Route path="/greenweb" element={<GreenWeb />} />
+      <Route path="/works" element={<Works />} />
       <Route path="/webdev" element={<WebDev />} />
+      <Route path="/imprint" element={<Imprint />} />
       <Route path="*" element={<Error />} />
     </Route>
   )

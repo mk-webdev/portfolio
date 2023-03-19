@@ -2,12 +2,20 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon-32x32.png" type="image/png" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + React</title>
+    <title>Marco Kadlubski</title>
   </head>
-  <body class="bg-dark text-light">
+  <body class="relative bg-dark text-light">
     <div id="root" class="overflow-x-hidden"></div>
+    <div
+      id="dbb"
+      class="absolute bottom-36 left-1/2 -translate-x-1/2 text-sm sm:bottom-10"></div>
+    <script async defer src="https://digitalbeacon.co/js/badge.min.js"></script>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

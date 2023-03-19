@@ -1,14 +1,13 @@
 import { RouterProvider } from "react-router-dom";
-import HeaderContextProvider from "./Components/Helpers/HeaderContext";
+import ContextProvider from "./Components/Helpers/Context";
 import { router } from "./Components/Router/Router";
-import Error from "./Components/Error";
 
-const App = ({ children }) => {
+const App = () => {
   return (
     <>
-      <HeaderContextProvider>
+      <ContextProvider>
         <RouterProvider router={router} />
-      </HeaderContextProvider>
+      </ContextProvider>
     </>
   );
 };

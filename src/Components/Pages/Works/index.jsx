@@ -2,19 +2,19 @@ import React, { useContext } from "react";
 import { useMetaData, useDataFilter } from "../../Helpers/customHooks";
 import Contact from "../../Sections/Contact";
 import { Context } from "../../Helpers/Context";
-import SidescrollText from "../../Sections/SidescrollText";
+import WorksList from "../../Sections/WorksList";
 
-const Home = () => {
+const Works = () => {
   const lang = useContext(Context)[0];
   const position = useContext(Context)[2];
   const data = useContext(Context)[4];
-  let pageData, meta;
+  let pageData, postsData, meta;
 
   if (data) {
     pageData = useDataFilter(data, position, "page")[0];
     meta = useMetaData(pageData.title, pageData.content, lang);
+    postsData = useDataFilter(data, position, "posts");
   }
-
   return (
     <>
       {meta ? meta : null}
@@ -26,24 +26,10 @@ const Home = () => {
           </p>
         </article>
       </section>
-      <div className="relative flex flex-col mt-24 mb-20 lg:mt-24 lg:mb-36 lg:mr-96 2xl:mr-[600px]">
-        <img
-          className="h-32 sm:h-48 md:h-72"
-          src="./m.svg"
-          alt="Stilisiertes M"
-        />
-        <img
-          className="h-32 ml-32 -mt-6 sm:h-48 sm:ml-48 sm:-mt-8 md:h-72 md:ml-72 md:-mt-12"
-          src="./k.svg"
-          alt="Stilisiertes K"
-        />
-      </div>
-      {pageData ? (
-        <SidescrollText pageData={pageData.custom_fields} lang={lang} />
-      ) : null}
+      {postsData ? <WorksList postsData={postsData} /> : null}
       {pageData ? <Contact pageData={pageData.custom_fields} /> : null}
     </>
   );
 };
 
-export default Home;
+export default Works;
